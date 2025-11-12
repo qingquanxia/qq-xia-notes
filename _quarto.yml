@@ -8,6 +8,19 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+  sidebar:
+    style: "docked"
+    search: false
+    contents:
+      - section: "Physics"
+        contents:
+          - physics/continuous-fourier.qmd
+          - physics/discrete-time.qmd
+          - physics/dirac-comb.qmd
+          - physics/spectral-theorem.qmd
+      - section: "Math"
+        contents:
+          - math/fundamental-theorem-alg.qmd
 
 format:
   html:
