@@ -1,5 +1,5 @@
 ---
-title: "Unifying the continuous and discrete worlds: the dirac comb"
+title: "Part 3, Unifying the continuous and discrete worlds: the dirac comb"
 date: 2023-08-28
 toc: true
 number-sections: false
