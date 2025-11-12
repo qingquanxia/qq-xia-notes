@@ -1,0 +1,17 @@
+::: {.hidden}
+
+\def\RR{{\bf R}}
+\def\CC{{\bf C}}
+\def\QQ{{\bf Q}}
+\def\ZZ{{\bf Z}}
+\def\NN{{\bf N}}
+\def\SS{{\bf S}}
+\def\R{{\rightarrow}}
+\def\Real{{\operatorname{Re}}}
+\def\Imag{{\operatorname{Im}}}
+\def\expect{{\bf R}}
+
+\def\del#1#2{{\frac{\partial #1}{\partial #2}}}
+\def\delsq#1#2{{\frac{\partial^2 #1}{\partial^2 #2}}}
+
+:::
