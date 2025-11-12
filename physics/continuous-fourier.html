@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-08-26">
+
+<title>Part 1, The continuous world: Fourier series to Fourier transforms – QQ Xia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">QQ Xia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Part 1, The continuous world: Fourier series to Fourier transforms</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Physics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/continuous-fourier.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Part 1, The continuous world: Fourier series to Fourier transforms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/discrete-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Part 2, Discrete Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/dirac-comb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Part 3, Unifying the continuous and discrete worlds: the dirac comb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/spectral-theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Spectral Theorem</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/fundamental-theorem-alg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Proofs of the Fundamental Theorem of Algebra</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-exponential-function" id="toc-the-exponential-function" class="nav-link active" data-scroll-target="#the-exponential-function">The exponential function</a></li>
+  <li><a href="#inner-product-spaces-and-dirac-notation" id="toc-inner-product-spaces-and-dirac-notation" class="nav-link" data-scroll-target="#inner-product-spaces-and-dirac-notation">Inner product spaces and Dirac notation</a></li>
+  <li><a href="#fourier-series" id="toc-fourier-series" class="nav-link" data-scroll-target="#fourier-series">Fourier series</a></li>
+  <li><a href="#fourier-transforms" id="toc-fourier-transforms" class="nav-link" data-scroll-target="#fourier-transforms">Fourier transforms</a></li>
+  <li><a href="#systems-and-convolution" id="toc-systems-and-convolution" class="nav-link" data-scroll-target="#systems-and-convolution">Systems and convolution</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Part 1, The continuous world: Fourier series to Fourier transforms</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Part 1, The continuous world: Fourier series to Fourier transforms</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 26, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="hidden">
+
+</div>
+<p>This article is part of a series:</p>
+<ol type="1">
+<li><a href="../physics/continuous-fourier.html">Part 1, The continuous world: Fourier series to Fourier transforms</a></li>
+<li><a href="../physics/discrete-time.html">Part 2, Discrete time</a></li>
+<li><a href="../physics/dirac-comb.html">Part 3, Unifying the continuous and discrete worlds: the dirac comb</a></li>
+</ol>
+<p>There is something special about waves. You can see them as the oscillating ocean surface, bobbing ships up and down as they travel to far off places. You can see them when you strike a long metal hand-rail, as the metal vibrates and causes the pole to be blurry in your vision, and then hear them as the metal transfers its vibration into the pressure of the air. You can see them quite literally, because light is just a ripple in the invisible electromagnetic field vibrating at <span class="math inline">\(10^{15}\)</span> cycles per second.</p>
+<section id="the-exponential-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-exponential-function">The exponential function</h2>
+<p>The exponential function is defined as the power series</p>
+<p><span class="math display">\[e^z = 1+z+\frac{z^2}{2!}+\frac{z^3}{3!}+\cdots\]</span></p>
+<p>If you plot <span class="math inline">\(e^{i\theta}\)</span> in the complex plane, as you increase <span class="math inline">\(\theta\)</span> you will see a particle starting from the x-axis, rotating counterclockwise in a unit circle at constant speed. From this we define cosine and sine as the real and imaginary parts:</p>
+<p><span class="math display">\[\cos(\theta) := {\operatorname{Re}}(e^{i\theta}) = \frac{1}{2}(e^{i\theta}+e^{-i\theta})\]</span></p>
+<p><span class="math display">\[\sin(\theta) := {\operatorname{Im}}(e^{i\theta}) = \frac{1}{2i}(e^{i\theta}-e^{-i\theta})\]</span></p>
+<p>Euler’s formula summarizes this decomposition nicely:</p>
+<p><span class="math display">\[e^{i\theta} = \cos(\theta) + i\sin(\theta)\]</span></p>
+<p>Differentiating the power series yields a very special property for the exponential function:</p>
+<p><span class="math display">\[{\frac{\partial }{\partial t}}(e^t) = e^t\]</span></p>
+<p>(I am restricting myself to functions <span class="math inline">\({\bf R}{\rightarrow}{\bf C}\)</span>. This also holds true for <span class="math inline">\({\bf C}{\rightarrow}{\bf C}\)</span>, but that requires complex analysis to explain, and isn’t really relevant right now). This gives us a really neat alternative definition: “The exponential function is defined as the unique eigenfunction of the differentiation operator with eigenvalue 1, such that <span class="math inline">\(e^0=1\)</span>”.</p>
+<p>Because it turns out pretty much every formula in physics is a differential equation, the operator <span class="math inline">\(({\frac{\partial }{\partial t}})\)</span> is extremely important. That is why the exponential function has been dubbed “the most important function in mathematics” (Walter Rudin). In general the derivative does messy things to your function. But if you can express your function as the sum of exponentials, now you’ve got some serious simplification power.</p>
+</section>
+<section id="inner-product-spaces-and-dirac-notation" class="level2">
+<h2 class="anchored" data-anchor-id="inner-product-spaces-and-dirac-notation">Inner product spaces and Dirac notation</h2>
+<p>The idea of inner products originates from the 3D Euclidean vectors used in classical mechanics. In that context, a vector <span class="math inline">\(v\)</span> is an arrow in 3D space; if you place the tail of the arrow at the origin, you can associate the vector with the coordinates at the head, <span class="math inline">\((v_1, v_2, v_3)\)</span>. The dot product of two vectors <span class="math inline">\(u,v\)</span> is defined as <span class="math inline">\(u\cdot v = u_1v_1+u_2v_2+u_3v_3\)</span>. It essentially measures how aligned they are. Two vectors that are perfectly aligned will give maximum dot product; perpendicular will give 0; anti-parallel will give most negative dot product. Notice in particular that <span class="math inline">\(v\cdot v = |v|^2\)</span>; in fact this property can be used to define the length of a vector. They are also used for decomposing a vector into coordinates. If you have an orthonormal basis <span class="math inline">\(\{e_1, e_2, e_3\}\)</span>, you can project my vector <span class="math inline">\(v\)</span> onto the lines spanned by each of them, so that projecting it onto <span class="math inline">\(e_1\)</span>, for example, will give the vector <span class="math inline">\((v\cdot e_1)e_1\)</span>. (By orthonormal basis, I mean a basis in which the vectors are orthogonal to each other and each of unit length.) Because these three basis vectors span the entire 3-dimensional space, adding the three projection vectors will perfectly reconstruct the original vector.</p>
+<p>But no one is content sticking to three dimensions. The same concepts can be applied to vectors of arbitrary dimension, so that for <span class="math inline">\(u,v\in {\bf R}^n\)</span>, <span class="math inline">\(u\cdot v = \sum_i u_iv_i\)</span>. The real fun begins when we try to extend this concept to complex vectors, that is, to <span class="math inline">\({\bf C}^n\)</span>. Because length is absolutely essential to geometry, we would like to preserve the idea that the product of a vector with itself is its length squared, in particular, that it is real. Hence we will define the product of two vector <span class="math inline">\(u,v\in {\bf C}^n\)</span> as <span class="math inline">\(\sum_i u_i^* v_i\)</span>. Hence, the product of <span class="math inline">\(v\)</span> with itself is <span class="math inline">\(\sum_i v_i^* v_i = \sum_i |v_i|^2\)</span>, which makes sense.</p>
+<p>Here we formalize the concept of an inner product, which is a generalization of all the ideas expressed above. An inner product over a complex (or real) vector space <span class="math inline">\(V\)</span> is defined as a function <span class="math inline">\(\braket{\cdot | \cdot}\)</span> mapping <span class="math inline">\(V\times V{\rightarrow}{\bf C}\)</span> which has these three properties:</p>
+<ol type="1">
+<li>Linearity: <span class="math inline">\(\braket{u|a v + b w} = a\braket{u|v} + b\braket{u|w}\)</span></li>
+<li>Conjugate symmetry: <span class="math inline">\(\braket{u|v} = \braket{v|u}^*\)</span></li>
+<li>Positive definite: <span class="math inline">\(\braket{v|v}\)</span> is greater than zero if <span class="math inline">\(v\neq 0\)</span>, and <span class="math inline">\(0\)</span> otherwise. In particular, its value is real.</li>
+</ol>
+<p>Three quick notes:</p>
+<p>First of all, this definition works equally well with a real vector space, since the complex conjugate of a real number is just itself.</p>
+<p>Second, properties 1 and 2 combine to give <span class="math inline">\(\braket{au + bv| w} = a^* \braket{u|w} + b^* \braket{v|w}\)</span>. It can be tricky to remember that if we take the complex scalar out of the first argument, it must be complex conjugated.</p>
+<p>Third, these definitions seem more general than our previous complex-coefficient based way of calculating inner products, but it is actually not. If we are given a finite dimensional complex inner product space <span class="math inline">\(V\)</span>, we are guaranteed by the Gram-Schmidt procedure to find an orthonormal basis <span class="math inline">\(\{e_1,\cdots,e_n\}\)</span>, where <span class="math inline">\(\braket{e_i|e_j}\)</span> is 0 if <span class="math inline">\(i\neq j\)</span> and 1 if <span class="math inline">\(i=j\)</span>. Hence the inner product of any two vectors is, by linearity, <span class="math inline">\(\braket{u|v} = \braket{\sum_i u_i e_i | \sum_j v_j e_j} = \sum_{i,j} u_i^* v_j \braket{e_i | e_j} = \sum_i u_i^* v_i\)</span>, which is precisely our old definition.</p>
+<p>So our new definition is still the same familiar product. However, it does not reference any particular basis, and it gives us a new way to apply inner products to the strange world of uncountably-infinite dimensional vector spaces.</p>
+</section>
+<section id="fourier-series" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-series">Fourier series</h2>
+<p>To keep the math consistent, in the pure mathy parts I will always use <span class="math inline">\(t\)</span> as the independent variable, <span class="math inline">\(x,y\)</span> as functions of <span class="math inline">\(t\)</span>, and <span class="math inline">\(f\)</span> to denote frequency. Keep in mind the same math can be applied whether your independent variable is space or time. In the physics parts however I reserve the right to go crazy with variable names.</p>
+<p>Consider the space of square-integrable functions <span class="math inline">\([a,b]\rightarrow {\bf C}\)</span>, written <span class="math inline">\(L^2([a,b], {\bf C})\)</span>, which consists of all functions <span class="math inline">\(f: [a,b]\rightarrow {\bf C}\)</span> such that <span class="math inline">\(\int_a^b |f|^2 dt &lt; \infty\)</span>. It is a complex vector space, and we can define an inner product on it: <span class="math inline">\(\braket{x(t)|y(t)} := \int_a^b x^*(t)y(t)dt\)</span>. Now let’s consider what the inner product of two exponentials looks like: <span class="math inline">\(\braket{e^{2\pi if_1 t}| e^{2\pi if_2 t}} = \int_a^b e^{2\pi i(f_2-f_1)t}dt = [\frac{1}{2\pi i(f_2-f_1)}e^{2\pi i(f_2-f_1)t}]_a^b\)</span>. In order for this to be zero, we want <span class="math inline">\(e^{2\pi i(f_2-f_1)b} = e^{2\pi i(f_2-f_1)a}\)</span>, that is, <span class="math inline">\(2\pi (f_2-f_1)(b-a) = 2\pi n\)</span> for some integer <span class="math inline">\(n\)</span>. So a necessary and sufficient condition for two exponentials to be orthogonal is that <span class="math inline">\(f_2-f_1 = n/(b-a)\)</span> for some integer <span class="math inline">\(n\)</span>.</p>
+<p>Hence we have found that the set of functions <span class="math inline">\(\{ \frac{1}{\sqrt{b-a}} e^{2\pi ifx} \}_{f=n/(b-a)}\)</span> for <span class="math inline">\(n\in{\bf Z}\)</span> is an orthonormal set. It turns out this set is complete as well, meaning that any function in the vector space <span class="math inline">\(L^2([a,b], {\bf C})\)</span> can be expressed as a linear combination of these. This set is called a <em>Hilbert basis</em>. (For a proof of why it is complete, see “Mathematics of Classical and Quantum Physics” by Byron and Fuller.)</p>
+<blockquote class="blockquote">
+<p>Physicists generally leave the difficult job of proving completeness of a given set of functions to the mathematicians. All orthonormal sets of functions normally occurring in mathematical physics have been proved to be complete.</p>
+<p>— John David Jackson, <em>Classical Electrodynamics</em>, 2nd edition, page 66</p>
+</blockquote>
+<p>We have now decomposed any function on the interval into the sum of complex exponentials! This lets us do interesting things….</p>
+<section id="physics-aside-guitar-strings" class="level4">
+<h4 class="anchored" data-anchor-id="physics-aside-guitar-strings">Physics aside: Guitar strings</h4>
+<p>Consider a string of length <span class="math inline">\(L\)</span> stretched tight between two fixed points. Suppose its mass per unit length is <span class="math inline">\(\lambda\)</span>, and it is subject to a tension of <span class="math inline">\(T\)</span>.</p>
+<p><img src="../assets/tension.svg" class="img-fluid"></p>
+<p>From the diagram above, we see that the y-component of force on the tiny bit of string is <span class="math inline">\(-T\frac{dy}{dx} + T(\frac{dy}{dx} + \frac{d^2y}{dx^2}dx) = T\frac{d^2y}{dx^2}dx\)</span>. Hence, by Newton’s second law <span class="math inline">\(F=ma\)</span>, we have <span class="math inline">\(T\frac{d^2y}{dx^2}dx = (\lambda dx) (\frac{d^2y}{dt^2})\)</span>, which gives us a “wave equation”: <span class="math inline">\(\frac{d^2y}{dx^2} = \frac{1}{T/\lambda} \frac{d^2y}{dt^2}\)</span>.</p>
+<p>(For comparison, here are some other wave equations:</p>
+<ol type="1">
+<li>Sound waves: <span class="math inline">\(\nabla^2 p = \frac{1}{v_s^2}\frac{\partial^2 p}{\partial t^2}\)</span> where <span class="math inline">\(v_s=\sqrt{B/\rho_0}\)</span> is the speed of sound, <span class="math inline">\(B\)</span> is the bulk modulus of the fluid, and <span class="math inline">\(\rho_0\)</span> is the average density. <span class="math inline">\(\nabla^2 = {\frac{\partial^2 }{\partial^2 x}} + {\frac{\partial^2 }{\partial^2 y}} + {\frac{\partial^2 }{\partial^2 z}}\)</span> is the Laplacian operator.</li>
+<li>EM waves (light): <span class="math inline">\(\nabla^2 \bf{E} = \frac{1}{c^2}\frac{\partial^2 \bf{E}}{\partial t^2}\)</span>, where <span class="math inline">\(c=1/\sqrt{\epsilon_0\mu_0}\)</span> is the speed of light.</li>
+<li>de-Broglie matter waves (like free electrons) in quantum theory: <span class="math inline">\(\nabla^2 \psi = \frac{2m}{\hbar} (-i\frac{\partial \psi}{\partial t})\)</span>. (This looks a bit different from the others; it expresses the fact that matter waves do not have a constant phase-velocity, which leads to dispersion of different frequency components. But keep in mind the <span class="math inline">\(i\)</span> is essentially a derivative, so it has sorta the same form).</li>
+<li>Gravitational waves: In the weak field limit, general relativity can be approximated by a set of four equations that exactly parallel Maxwell’s equations (see <a href="https://en.wikipedia.org/wiki/Gravitoelectromagnetism">gravitoelectromagnetism</a>). Hence gravitational waves obey the same equation that electromagnetic waves do, that is, <span class="math inline">\(\nabla^2 \bf{E_g} = \frac{1}{c^2}\frac{\partial^2 \bf{E_g}}{\partial t^2}\)</span>, where <span class="math inline">\(\bf{E_g}\)</span> is the gravitoelectric field (conventional gravitational field).</li>
+</ol>
+<p>These equations are very different from the heat and diffusion equations, in which the time derivative is only first order. Hence heat and diffusion do not exhibit wave-like behavior.)</p>
+<p>With foresight, I will define <span class="math inline">\(v=\sqrt{T/\lambda}\)</span>.</p>
+<p>To solve this equation, let’s start by only looking for solutions of the form <span class="math inline">\(y(x,t) = f(x) g(t)\)</span>. This seems a ridiculously strict assumption at first, but we will see soon that it actually yields very general solutions.</p>
+<p>Plugging it in, we get <span class="math inline">\({\frac{\partial^2 f}{\partial^2 x}} g = \frac{1}{v^2}f{\frac{\partial^2 g}{\partial^2 t}}\)</span> so <span class="math inline">\(\frac{1}{f}{\frac{\partial^2 f}{\partial^2 x}} = \frac{1}{v^2}\frac{1}{g}{\frac{\partial^2 g}{\partial^2 t}}\)</span>. Now here is a subtle point. The right side of the equation depends only on <span class="math inline">\(t\)</span>, while the right side of the equation depends only on <span class="math inline">\(x\)</span>. This means that both sides are equal to some constant. If it were not so, then you could change the value of the left hand side by moving <span class="math inline">\(t\)</span> and keeping <span class="math inline">\(x\)</span> constant; because of the equality, the right side will also be changed; but this is a contradiction, because the right side depended only on <span class="math inline">\(x\)</span>.</p>
+<p>Let’s call the constant <span class="math inline">\(-k^2\)</span>, and let’s define <span class="math inline">\(\omega := vk\)</span>. Now we have essentially decomposed our PDE into two ODEs, which are simple to solve.</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{1}{f}{\frac{\partial^2 f}{\partial^2 x}} &amp;= -k^2 \\
+\frac{1}{g}{\frac{\partial^2 g}{\partial^2 t}} &amp;= -\omega^2
+\end{align}
+\]</span></p>
+<p>We end up with the general solutions <span class="math inline">\(f(x) = Ae^{ikx} + Be^{-ikx}\)</span> and <span class="math inline">\(g(t) = Ce^{i\omega t} + De^{-i\omega t}\)</span>. The boundaries conditions specify that both ends of the string are fixed at zero, hence <span class="math inline">\(A+B=0\)</span> and <span class="math inline">\(Ae^{ikL}+Be^{-ikL}=0\)</span>. Substituting the first equation into the second gives <span class="math inline">\(A(e^{ikL}-e^{-ikL})=0 \Rightarrow e^{ikL}=e^{-ikL}\Rightarrow e^{2ikL}=1\)</span>, which implies <span class="math inline">\(k=n\pi/L\)</span> for some integer <span class="math inline">\(n\)</span>. We get as our final solution: <span class="math display">\[y(x,t) = \sin(kx)e^{i\omega t} + \text{c.c.}\]</span> (The c.c. stands for complex-conjugate, and it is just there to make the solution real. Some people will set in place a convention that the final solution is complex, and it’s implicit that the physical solution is obtained by taking the real part. This is totally fine for linear systems, and is commonly used in discussing phasors in electrical circuits, however it gets a bit confusing when non-linearity comes into play, because <span class="math inline">\({\operatorname{Re}}(ab) \neq {\operatorname{Re}}(a){\operatorname{Re}}(b)\)</span>.)</p>
+<p>The solutions we have found are called the standing waves, because they oscillate in place. They are the first, second, etc harmonics, all multiples of the first (i.e.&nbsp;fundamental) harmonic. They seem like special cases, until we realize that, like the Fourier series, we can decompose <em>any</em> function into a sum of these standing waves.</p>
+<p>Normalizing the position equations gives us a family: <span class="math inline">\(f(x) = \sqrt{2} \sin(k_n x)\)</span> where <span class="math inline">\(k_n = n\pi /L\)</span>. From the <a href="[relref []{.quarto-shortcode__-param data-is-shortcode=&quot;1&quot; data-value=&quot;spectral-theorem.md&quot; data-raw=&quot;&quot;spectral-theorem.md&quot;&quot;} ]{.quarto-shortcode__ data-is-shortcode=&quot;1&quot; data-raw=&quot;{{< relref &quot;spectral-theorem.md&quot; >}}&quot;}">spectral theorem</a>, these equations form a complete orthonormal basis because they are the eigenfunctions of the Hermitian operator <span class="math inline">\({\frac{\partial^2 }{\partial^2 x}}\)</span> acting on the subspace of functions which are fixed to zero at <span class="math inline">\(x=0,L\)</span>.</p>
+<p>Now for some numbers. I’m pretty clueless when it comes to music, so I’ll get by with the best info I have. Looking at https://tension.stringjoy.com/, an accoustic guitar with phosphor bronze strings typically has a 25.5 inch 0.012 string (whatever 0.012 means). That string will give a pitch of E4 (329.63 Hz) when a tension of 25.7 pounds is applied. Assuming that E4 is the fundamental frequency of the note when played, we have <span class="math inline">\(v=\frac{\omega_1}{k_1} = \frac{2\pi (329.63 \mathrm{Hz})}{\pi / (25.5 \mathrm{in})} = 427 \mathrm{m/s}\)</span>. Incidentally this implies that the linear mass density is <span class="math inline">\(\lambda = T/v^2 = 0.627 \mathrm{g/m}\)</span>.</p>
+<p>Now let’s say we pluck the string at <span class="math inline">\(x=0.3L\)</span>, so it looks like a triangle at <span class="math inline">\(t=0\)</span>. We can decompose our initial shape <span class="math inline">\(f(x)\)</span> into a sum of our harmonics. We can attach an appropriate <span class="math inline">\(e^{i\omega t}\)</span> to each of these harmonics to get our full solution <span class="math inline">\(y(x,t)\)</span>. Here are some plots:</p>
+<p><img src="../assets/fixed-bc-power-harmonics.svg" class="img-fluid"></p>
+<p><img src="../assets/fixed-bc-full-approx.svg" class="img-fluid"></p>
+<p><img src="../assets/fixed-bc-close-approx.svg" class="img-fluid"></p>
+{{&lt; rawhtml &gt;}}
+<video width="100%" controls="" autoplay="">
+<source src="../assets/fixed-wave.mp4" type="video/mp4">
+<p>Your browser does not support the video tag.<br>
+</p>
+{{&lt; /rawhtml &gt;}}
+<p>{{&lt; details "Periodic boundary conditions (click to expand) (TODO)" &gt;}} The problem of a guitar string fixed at its ends actually didn’t involve Fourier series at all. Indeed, the Fourier series on that interval isn’t suited for the desired boundary conditions, because they are not zero at <span class="math inline">\(x=0,L\)</span>. Our fundamental harmonic <span class="math inline">\(\pi/L\)</span> had a wavenumber twice that of the fundamental wavenumber of the Fourier series. However, Fourier series <em>are</em> suitable when we desire periodic boundary conditions, that is, the two ends of string are joined together so there is no more boundary. I imagine this is hard to do with strings while maintaining tension, so we can use instead a metal ring. (This sort of boundary condition is also useful when you have an endless periodic lattice of atomic nuclei, all in perfect position inside a perfect crystal, with no boundary for millimeters on end, while their free electrons zip across the interior.) In this case, the boundary conditions require <span class="math inline">\(A+B = Ae^{ikL} + Be^{-ikL}\)</span> and <span class="math inline">\(ikA - ikB = ikAe^{ikL}-ikBe^{-ikL}\)</span>. Adding these two equation gives <span class="math inline">\(1 = e^{ikL}\)</span>, which requires that <span class="math inline">\(k = 2\pi n/L\)</span> for an integer <span class="math inline">\(n\)</span>, which is exactly the condition of our Fourier series. But these are not enough. We need addition info on whether the wave is travelling forwards or backwards.</p>
+<hr>
+{{&lt; /details &gt;}}
+<p>The Fourier series, which can be thought of as an orthonormal basis for the vector space <span class="math inline">\(L^2({\bf S}^1, {\bf C})\)</span>, are not the only set of complete orthonormal functions. Another beautiful example is the spherical harmonics, which form an orthonormal basis for <span class="math inline">\(L^2({\bf S}^2, {\bf C})\)</span> (<span class="math inline">\({\bf S}^2\)</span> is the unit sphere). These show up in the orbitals of the hydrogen atom.</p>
+<p><img src="../assets/spectral-img30-rotating-spherical-harmonics.gif" class="img-fluid"></p>
+<p><em>Real (Laplace) spherical harmonics <span class="math inline">\(Y_{lm}\)</span> for <span class="math inline">\(l=0,\dots, 4\)</span> (top to bottom) and <span class="math inline">\(m = 0,\dots, 4\)</span> (left to right). They are functions on the unit sphere: white regions are positive, blue regions are negative. <a href="https://en.wikipedia.org/wiki/File:Rotating_spherical_harmonics.gif">image credit</a></em></p>
+</video></section>
+</section>
+<section id="fourier-transforms" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-transforms">Fourier transforms</h2>
+<p>Fourier series can be used to model all sorts of interesting boundary problems, from the electromagnetic field in your microwave (metal walls impose zero electric field boundary conditions), to the variation of sound in an accoustic concert hall, to the behavior of an electron trapped in an infinite potential well.</p>
+<p>They run into a limitation, however. Time is essentially infinite in both directions. Space is also infinite in all directions. How do we model light waves from distant stars, which appear to have taken millions years to reach us?</p>
+<p>We need to consider the limit as <span class="math inline">\([a,b]\)</span> stretches out into an infinite interval.</p>
+<p>Let <span class="math inline">\(a\rightarrow -\infty\)</span> and <span class="math inline">\(b\rightarrow +\infty\)</span>. Our inner product becomes <span class="math inline">\(\braket{x(t),y(t)} \approx \int_{-\infty}^{+\infty}x^*(t)y(t)dt\)</span>. We can still write an arbitrary function <span class="math inline">\(x(t)\)</span> as <span class="math display">\[
+\begin{align}
+x(t) &amp;= \sum_{n=-\infty}^\infty  \braket{\frac{1}{\sqrt{b-a}}e^{2\pi i\frac{n}{b-a}t'} | x(t')} \frac{1}{\sqrt{b-a}}e^{2\pi i\frac{n}{b-a}t} \\
+&amp;\approx \int_{f=-\infty}^\infty \braket{e^{2\pi ift'} | x(t')} e^{2\pi ift} df \\
+&amp;= \int_{f=-\infty}^\infty \left(\int_{t'=-\infty}^\infty e^{-2\pi ift'} x(t') dt'\right) e^{2\pi ift} df
+\end{align}
+\]</span></p>
+<p>There we have it! We have derived our Fourier transform: <span class="math display">\[
+\boxed{
+    \begin{aligned}
+    &amp;X(f) = \int_{-\infty}^\infty e^{-2\pi ift} x(t)dt \\
+    &amp;x(t) = \int_{-\infty}^\infty e^{2\pi ift} X(f)df
+    \end{aligned}
+}
+\]</span></p>
+<p>These equations are remarkably symmetric. In fact, it turns out that <span class="math inline">\(\mathrm{FT}[x(t)] = \mathrm{IFT}[x(-t)]\)</span>.</p>
+<p>This has its uses. For example, one question that the Fourier transforms immediately raise is: what is the Fourier transform of <span class="math inline">\(e^{2\pi if_0t}\)</span>? If we try plugging it in, it yields a strange integral. For any <span class="math inline">\(f\neq f_0\)</span>, that part of the integral should be zero, since a complex exponential is, over the whole real line, zero on average. However, when <span class="math inline">\(f=f_0\)</span>, the integral is infinity. This kinda makes sense since a pure tone should yield an infinitely sharp response in the frequency domain.</p>
+<p>But we can be more precise. What is the Fourier transform of a dirac delta? <span class="math inline">\(\mathrm{FT}[\delta (t-t_0)] = \int_{t=-\infty}^\infty e^{-2\pi ift} \delta(t-t_0)dt = e^{-2\pi ift_0}\)</span>. But from duality, this means <span class="math inline">\(\mathrm{FT}[e^{2\pi if_0t}] = \delta(f-f_0)\)</span>!</p>
+<section id="properties" class="level4">
+<h4 class="anchored" data-anchor-id="properties">Properties:</h4>
+<p>Shamelessly copied from textbooks:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathrm{FT}[ax_1(t) + bx_2(t)] = a\mathrm{FT}[x_1(t)] + b\mathrm{FT}[x_2(t)]\)</span> (linearity)</li>
+<li><span class="math inline">\(\mathrm{FT}[x(at)] = \frac{1}{|a|} X(\frac{f}{a})\)</span></li>
+<li><span class="math inline">\(\mathrm{FT}[x(t)] = \mathrm{IFT}[x(-t)]\)</span> and <span class="math inline">\(\mathrm{IFT}[X(f)] = \mathrm{FT}[X(-f)]\)</span> (duality)</li>
+<li><span class="math inline">\(\mathrm{FT}[x(t) * y(t)] = X(f)Y(f)\)</span> (convolution)</li>
+</ol>
+<p>Common transforms:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathrm{FT}[e^{2\pi f_0 t}] = \delta(f - f_0)\)</span></li>
+<li><span class="math inline">\(\mathrm{FT}[\mathrm{sinc}(t)] = w_{-1/2,1/2}(f)\)</span> where <span class="math inline">\(\mathrm{sinc}(t) = \frac{\sin(\pi t)}{\pi t}\)</span> and the window function <span class="math display">\[ w_{a,b}(t) = \begin{cases}
+1 &amp; a\leq t\leq b \cr
+0 &amp; \text{otherwise}
+\end{cases}
+\]</span></li>
+<li><span class="math inline">\(\mathrm{FT}[u(t)] = \frac{1}{2\pi if} + \frac{1}{2}\delta(f)\)</span> (see Hilbert transform)</li>
+</ol>
+</section>
+<section id="a-different-perspective-quantum-mechanics-and-momentum-space" class="level4">
+<h4 class="anchored" data-anchor-id="a-different-perspective-quantum-mechanics-and-momentum-space">A different perspective: quantum mechanics and momentum space</h4>
+<p>I first learned about the Fourier transform in quantum mechanics, the way my professor presented it, I did not even realize it was a transform! Its description was so natural and intuitive. In this section I’ll quickly recite the basic rules in quantum mechanics for context, but the math can be applied to surprisingly many other physical systems.</p>
+<p>There are five postulates in quantum mechanics:</p>
+<p>1 The <em>state</em> of a physical system is represented by a vector in a complex Hilbert space. (A Hilbert space is just an inner-product space whose norm makes it a complete metric space. All the familiar finite dimensional spaces are Hilbert spaces. The set of all functions <span class="math inline">\(f: {\bf R}{\rightarrow}{\bf C}\)</span> that are square-integrable in that <span class="math inline">\(\braket{f|f} = \int_{-\infty}^\infty f^*(x)f(x) dx &lt; \infty\)</span>, i.e.&nbsp;<span class="math inline">\(L^2({\bf R}, {\bf C})\)</span>, is also a Hilbert space).</p>
+<p>2a A physical observable (e.g.&nbsp;energy, momentum, angular momentum, position, spin) is represented by a Hermitian linear operator on the Hilbert space. When you make a measurement of the observable using any sort of apparatus, it is only possible to observe an eigenvalue of the Hermitian operator.</p>
+<p>2b [not relevant to us] Measurement probability postulate.</p>
+<p>2c [not relevant to us] Collapse postulate.</p>
+<p>3 [not relevant to us] Time evolution.</p>
+<p>For a particle that is free to travel along the entire 1-dimensional line, the Hilbert space we are interested in is <span class="math inline">\(L^2({\bf R}, {\bf C})\)</span>.</p>
+<p>There are two operators we are interested in. The position observable is given by the operator <span class="math inline">\(f(x) \mapsto xf(x)\)</span>, that is, multiplication by <span class="math inline">\(x\)</span>. It is easy to check that this is linear and Hermitian. Its eigenvalues consist of the entire real line. An eigenvalue <span class="math inline">\(c\)</span> has eigenvector <span class="math inline">\(\delta(x-c)\)</span>. Because its eigenvectors form an orthonormal basis for the Hilbert space, we can express any wave <span class="math inline">\(\psi(x)\)</span> in its basis. In this case it is trivial: <span class="math inline">\(\ket{\psi} = \int_x \psi(x) \ket{\delta(x-c)} dx\)</span>.</p>
+<p>The momentum observable, on the other hand, is the operator <span class="math inline">\(\frac{\hbar}{i} (d/dx)\)</span>. Again, this is both linear and Hermitian. See the <a href="[relref []{.quarto-shortcode__-param data-is-shortcode=&quot;1&quot; data-value=&quot;spectral-theorem.md&quot; data-raw=&quot;&quot;spectral-theorem.md&quot;&quot;} ]{.quarto-shortcode__ data-is-shortcode=&quot;1&quot; data-raw=&quot;{{< relref &quot;spectral-theorem.md&quot; >}}&quot;}">spectral theorem</a> page for an explanation of why it is Hermitian. An eigenvector <span class="math inline">\(\ket{p}\)</span> with eigenvalue <span class="math inline">\(p\)</span> must be a solution of the differential equation <span class="math inline">\(\frac{\hbar}{i} (d/dx)\phi(x) = p\phi(x)\)</span>. Its solution is <span class="math inline">\(\ket{p} = e^{ipx/\hbar}\)</span>. Hence the eigenvectors of the momentum observable consist of the set of exponential functions. Note that <span class="math inline">\(\hbar = \frac{h}{2\pi}\)</span> is the reduced plank constant, and <span class="math inline">\(h\approx 6.6\times 10^{-34} \mathrm{J}\cdot\mathrm{s}\)</span> is the regular plank constant. If we choose to use so called “natural units” such that <span class="math inline">\(h=1\)</span>, then the momentum <span class="math inline">\(p\)</span> corresponds exactly to the frequencies that we use in our official definition of the Fourier transform!</p>
+<p>So we have two different sets of orthonormal bases for our Hilbert space. Getting from one to the other is a simple matter of changing bases. The operator <span class="math inline">\(\int_p \ket{p}\bra{p} dp\)</span> is called a “resolution of the identity”, because it is in fact the identity; it merely breaks our vector up as a linear combination of the basis and then sums all the components back together again, giving us original vector. If we expand it out, what it is really saying is that <span class="math display">\[
+\ket{\psi} = \left(\int_p \ket{p}\bra{p} dp\right)\ket{\psi} = \int_p e^{ipx/\hbar} \braket{p|\psi}dp = \int_p e^{ipx/\hbar} \left(\int_{x'} e^{-ipx'/\hbar}\psi dx'\right)dp
+\]</span></p>
+<p>But this is just our FT/IFT! At its heart, the Fourier transform is nothing more than a change in basis.</p>
+</section>
+</section>
+<section id="systems-and-convolution" class="level2">
+<h2 class="anchored" data-anchor-id="systems-and-convolution">Systems and convolution</h2>
+<p>A <em>system</em> is a black-box which takes in an input <span class="math inline">\(x(t)\)</span> and spits out an output <span class="math inline">\(y(t)\)</span>. A <em>linear system</em> is a system that preserves linearity, that is, if it maps <span class="math inline">\(x_1(t) \mapsto y_1(t)\)</span> and <span class="math inline">\(x_2(t)\mapsto y_2(t)\)</span>, then it maps <span class="math inline">\(ax_1(t)+bx_2(t)\mapsto ay_1(t)+by_2(t)\)</span>. Its inputs live in some sort of vector space, say <span class="math inline">\(L^2({\bf R}, {\bf C})\)</span>. In that case, a linear system is a linear transformation from input space to output space, <span class="math inline">\(L^2({\bf R}, {\bf C}) {\rightarrow}L^2({\bf R}, {\bf C})\)</span>. Linear transformations are completely described by their action on the basis, so we can capture all the information about the linear system in a function <span class="math inline">\(h(t,t')\)</span> where <span class="math inline">\(\delta(t-t') \mapsto h(t,t')\)</span>.</p>
+<p>A <em>linear time-invariant (LTI) system</em> is one which is also time-invariant, that is, if <span class="math inline">\(x(t) \mapsto y(t)\)</span>, then <span class="math inline">\(x(t-t_0) \mapsto y(t-t_0)\)</span>. The neat thing about these kinds of systems is that since our dirac-delta basis was really just the set of all time-shifted versions of the dirac-delta, we can capture the entire behavior of the system by seeing where it maps <span class="math inline">\(\delta(t)\)</span>. The response to the input <span class="math inline">\(\delta(t)\)</span> is usually denoted <span class="math inline">\(h(t)\)</span>. For any input <span class="math inline">\(x(t)\)</span>, we can find its response: <span class="math display">\[\begin{align}
+Ax(t) &amp;= A\int_{t'} x(t)\delta(t-t')dt' \\
+&amp;= \int_{t'} x(t) A\delta(t-t')dt' \\
+&amp;= \int_{t'} x(t) h(t-t')dt' \\
+&amp;:= x(t) * h(t)
+\end{align}\]</span></p>
+<section id="example-electric-fields-and-water-molecules-todo" class="level4">
+<h4 class="anchored" data-anchor-id="example-electric-fields-and-water-molecules-todo">Example: electric fields and water molecules (TODO)</h4>
+<p>For concreteness, let’s use the example of an electromagnetic wave (microwave) hitting a glass of water. Water is a polar molecule: the oxygen atom is more electronegative than the hydrogen atoms, and pulls more of the negative charge to one end. This means each water molecule has a dipole moment. At room temperature, the molecules jiggle around randomly, their dipole moments executing an exotic dance. When an electric field is applied though, the dipole moments tend to align with the electric field. By applying an electric field <span class="math inline">\(\mathbf{E}\)</span>, we have induced a polarization <span class="math inline">\(\mathbf{P}\)</span>. In the case of a constant electric field, this relation is typically linear, so that <span class="math inline">\(\mathbf{P} = \chi_E \mathbf{E}\)</span>. <span class="math inline">\(\chi_E\)</span> is the electric susceptibility of water.</p>
+<p>It seems that we are done. Our solution is rather boring. For an input <span class="math inline">\(\mathbf{E}\)</span>, our response <span class="math inline">\(\mathbf{P}\)</span> is just multiplying it by a constant. But this is not the whole picture. Imagine applying an electric pulse of infinitely short width, <span class="math inline">\(\mathbf{E_0} \delta(t)\)</span>. When the pulse hits water, the poor molecules don’t have time to instantaneously swivel in the direction of the field. After all, they still have to obey the laws of Newtonian mechanics: bodies at rest tend to stay at rest. They experience an instantaneous impulse, and afterwards, nothing. The response becomes <span class="math inline">\(\mathbf{P_0} h(t)\)</span>.</p>
+<p>Now we transform into the frequency domain, <span class="math inline">\(H(f)\)</span>. This produces a spectrum.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/qingquanxia\.github\.io\/qq-xia-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

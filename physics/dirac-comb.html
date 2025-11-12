@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2023-08-28">
 
-<title>About – QQ Xia</title>
+<title>Part 3, Unifying the continuous and discrete worlds: the dirac comb – QQ Xia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,8 +70,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -80,9 +110,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">QQ Xia</span>
     </a>
   </div>
@@ -93,11 +123,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -111,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/dirac-comb.html">Part 3, Unifying the continuous and discrete worlds: the dirac comb</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -122,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="../index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -138,25 +168,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./physics/continuous-fourier.html" class="sidebar-item-text sidebar-link">
+  <a href="../physics/continuous-fourier.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Part 1, The continuous world: Fourier series to Fourier transforms</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./physics/discrete-time.html" class="sidebar-item-text sidebar-link">
+  <a href="../physics/discrete-time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Part 2, Discrete Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./physics/dirac-comb.html" class="sidebar-item-text sidebar-link">
+  <a href="../physics/dirac-comb.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Part 3, Unifying the continuous and discrete worlds: the dirac comb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./physics/spectral-theorem.html" class="sidebar-item-text sidebar-link">
+  <a href="../physics/spectral-theorem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Spectral Theorem</span></a>
   </div>
 </li>
@@ -173,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./math/fundamental-theorem-alg.html" class="sidebar-item-text sidebar-link">
+  <a href="../math/fundamental-theorem-alg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 Proofs of the Fundamental Theorem of Algebra</span></a>
   </div>
 </li>
@@ -184,15 +214,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#deriving-the-dft" id="toc-deriving-the-dft" class="nav-link active" data-scroll-target="#deriving-the-dft">Deriving the DFT</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#todo-power" id="toc-todo-power" class="nav-link" data-scroll-target="#todo-power">TODO: Power</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/dirac-comb.html">Part 3, Unifying the continuous and discrete worlds: the dirac comb</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Part 3, Unifying the continuous and discrete worlds: the dirac comb</h1>
 </div>
 
 
@@ -200,6 +238,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 28, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -209,14 +253,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Hello! My name is QingQuan Xia.</p>
-<p>A little bit about me:</p>
-<p>I am a Christian who is saved through grace by the Lord Jesus Christ and holds that the Bible is the perfect literal word of God. I love discussing about the Bible with anyone who is interested!</p>
-<p>I graduated from UC Berkeley in 2022 as an Engineering Physics and EECS major, and then worked at SpaceX as a software engineer on the Direct-to-cell Starlink team for 3 years, writing code for the PHY/MAC layers of the 4G LTE protocol. However, because I really like doing physics, I’m applying for a PhD as of Nov 2025.</p>
-<p>There are many mathematical tools I’ve learned and honed over the years that I want to gather in one place. As I continue to learn things, I’m planning to write them down as notes on this website so that I can refer back to them in the future and hopefully benefit a few others as well.</p>
-<p>Would be incredibly happy to receive feedback or questions! You can email me at “qingquanxia at gmail dot com”.</p>
+<div class="hidden">
+
+</div>
+<p>This article is part of a series:</p>
+<ol type="1">
+<li><a href="../physics/continuous-fourier.html">Part 1, The continuous world: Fourier series to Fourier transforms</a></li>
+<li><a href="../physics/discrete-time.html">Part 2, Discrete time</a></li>
+<li><a href="../physics/dirac-comb.html">Part 3, Unifying the continuous and discrete worlds: the dirac comb</a></li>
+</ol>
+<p>The Dirac comb is defined as <span class="math inline">\(d_c(t) = \sum_{n=-\infty}^{\infty} \delta(t-n)\)</span>. It is an infinite train of impulses, each spaced exactly one unit apart. To make it spaced <span class="math inline">\(\Delta t\)</span> apart, we simply use <span class="math inline">\(d_c(t/\Delta t)\)</span>. Notice how this not only adjusts the spacing, but also adjusts the intensity of the impulses, so that on average, integrating over a unit interval will always give you 1. This is a nice property which is analogous to firing paintball pellets at a cart. You can fire slowly with heavy powerful pellets, or you can fire rapidly with small wimpy pellets, but the rate at which momentum is imparted to the cart is the same. In fact, in the limit <span class="math inline">\(\Delta t\rightarrow 0\)</span>, we have <span class="math inline">\(d_c(t/\Delta t)\rightarrow 1\)</span>, analogous to hosing the cart down with a continuous stream of water instead of shooting it with discrete pellets.</p>
+<p>The Fourier transform of <span class="math inline">\(d_c(t)\)</span> turns out to be itself, that is, <span class="math inline">\(d_c(f)\)</span>.</p>
+<p>Proof: Consider first the Fourier series representation of <span class="math inline">\(\delta(t)\)</span> in the interval <span class="math inline">\([-1/2,1/2]\)</span>. All its Fourier coefficients are equal to 1, hence, in that interval, <span class="math inline">\(\delta(t) = \sum_n e^{2\pi int}\)</span>. Because all these exponentials are at least periodic with period 1, we see that <span class="math inline">\(d_c(t) = \sum_n \delta(t-n) = \sum_n e^{2\pi int}\)</span>. Hence, its Fourier trnasform is <span class="math inline">\(FT[d_c(t)] = \int_t e^{-2\pi ift} \sum_n \delta(t-n) dt = \sum_n e^{-2\pi ifn} = d_c(f)\)</span>.</p>
+<p>The neatest part is that it can be used to model sampling. If we have a continuous signal <span class="math inline">\(x(t)\)</span>, and we sample it with spacing <span class="math inline">\(\Delta t\)</span>, what we’re really doing is multiplying it by <span class="math inline">\(d_c(t/\Delta t)\)</span></p>
+<p>If we have a signal <span class="math inline">\(x(t)\)</span> contained within a width <span class="math inline">\(T\)</span> and we take the convolution <span class="math inline">\(x(t)*d_c(t/T)\)</span>, we are copy-pasting <span class="math inline">\(x(t)\)</span> at every spike in the train, and essentially making a periodic version of the signal with period <span class="math inline">\(T\)</span>.</p>
+<section id="deriving-the-dft" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-the-dft">Deriving the DFT</h2>
+<p>Suppose we have a sequence <span class="math inline">\(x_n\)</span> which is periodic with period <span class="math inline">\(N\)</span>, and spaced <span class="math inline">\(\Delta t\)</span> apart, hence in the frequency domain it’s spaced <span class="math inline">\(\Delta f = \frac{1}{N\Delta t}\)</span> apart. The time domain representation of this sequence is <span class="math inline">\(x(t) = \sum_n x_n \delta(\frac{t}{\Delta t} - n) = \sum_n x_n \Delta t \delta(t-n\Delta t)\)</span>.</p>
+<p>Using linearity, its Fourier transform is <span class="math display">\[\begin{align}
+X(f) &amp;= \sum_n x_n\Delta t e^{-2\pi in\Delta t f} \\
+&amp;= \sum_m \left( \sum_{n=0}^{N-1} x_n\Delta t e^{-2\pi in\Delta t f} \right) e^{-2\pi imN\Delta t f} \\
+&amp;= \left( \sum_{n=0}^{N-1} x_n \frac{1}{N\Delta f} e^{-2\pi i \frac{n}{N}\frac{f}{\Delta f}} \right) \left( \sum_m e^{-2\pi im\frac{f}{\Delta f}} \right) \\
+&amp;= \left( \sum_{n=0}^{N-1} x_n \frac{1}{N} e^{-2\pi i \frac{n}{N}\frac{f}{\Delta f}} \right) \frac{1}{\Delta f} d_c(\frac{f}{\Delta f}) \\
+&amp;= \sum_k X_k \delta(f-k\Delta f)
+\end{align}\]</span></p>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<section id="sampling" class="level4">
+<h4 class="anchored" data-anchor-id="sampling">Sampling</h4>
+<p>Armed with these facts, proving the Nyquist-Shannon sampling theorem becomes trivial. Suppose you start with a signal <span class="math inline">\(x(t)\)</span>. Let’s suppose its Fourier transform <span class="math inline">\(X(f)\)</span> is band-limited, that is, contained within an interval of width <span class="math inline">\(F\)</span>. Sampling with rate <span class="math inline">\(F\)</span> in the time domain is equivalent to periodizing with period <span class="math inline">\(F\)</span> in the frequency domain. This operation is easily reversed by multiplying by the window function of width <span class="math inline">\(F\)</span> in the frequency domain, which corresponds to convolution by sinc in the time-domain, perfectly reconstructing the original continuous signal.</p>
+<p><img src="../assets/dirac-comb-sampling.svg" class="img-fluid"></p>
+</section>
+<section id="digital-to-analog-converters-dac" class="level4">
+<h4 class="anchored" data-anchor-id="digital-to-analog-converters-dac">Digital-to-analog converters (DAC)</h4>
+<p>[TODO: figure sinc overlay of freq] Suppose we have a digital signal <span class="math inline">\(x(t) = \sum_{n=-\infty}^\infty x[n]\delta(t/\Delta t - n)\)</span>. When we’re ready to output, the DAC uses zero-hold interpolation to reconstruct an analog signal. This is equivalent to convolving the digital signal by the window function <span class="math inline">\(w_{0,\Delta t}(t)\)</span>. Of course, this convolution turns into multiplication by <span class="math inline">\(\mathrm{sinc}(\Delta t f) e^{-\pi i \Delta t f}\)</span> in the frequency domain. Hence even though it is theoretically possible to perfectly reconstruct a band-limited continuous time signal, in practice the DAC will introduce a distortion. To deal with this distortion, it’s important both to choose the operating frequencies of DACs carefully and to place appropriate equalizing filters.</p>
+</section>
+<section id="shifting-fractional-frequency-in-discrete-frequency-domain." class="level4">
+<h4 class="anchored" data-anchor-id="shifting-fractional-frequency-in-discrete-frequency-domain.">Shifting fractional frequency in discrete frequency domain.</h4>
+<p>Suppose we have a regularly spaced grid of frequency samples, <span class="math inline">\(X_k\)</span>, spaced <span class="math inline">\(\Delta f\)</span> apart, that we have stored in a computer. Shifting by an integer number of spaces is easy. But what if we want to shift by a fraction of a sample, say, <span class="math inline">\(f_s\)</span>? The operations we must do is as follows: 1. Convert to time-domain. This results in a signal with period <span class="math inline">\(1/\Delta f\)</span>. 2. Multiply by complex exponential <span class="math inline">\(e^{2\pi i f_s t}\)</span> 3. Multiply by the window function <span class="math inline">\(w_{-\frac{1}{2\Delta f},\frac{1}{2\Delta f}}(t)\)</span> 4. Make it periodic again by convolving by <span class="math inline">\(\sum_n \delta(t - \frac{n}{\Delta f}) = \Delta f d_c(\Delta f t)\)</span> 5. Convert back to frequency domain</p>
+<p>If we were to do all this in the frequency domain, it would look like: 1. Convolve by <span class="math inline">\(\delta(f-f_s)\)</span> 2. Convolve by <span class="math inline">\(\frac{1}{\Delta f}\mathrm{sinc}(\frac{f}{\Delta f})\)</span> 3. Multiply by <span class="math inline">\(d_c(\frac{f}{\Delta f})\)</span>.</p>
+<p>Because convolution is associative, we can combine steps 1 and 2 so that it’s a single step, that is, convolve by <span class="math inline">\(\frac{1}{\Delta f}\mathrm{sinc}(\frac{f-f_s}{\Delta f})\)</span>. Step 3 essentially samples on the same grid, and then to get the final coefficients, we need to multiply by <span class="math inline">\(\Delta f\)</span>.</p>
+<p>If our original sequence <span class="math inline">\(X_k\)</span> was aperiodic, the shifted frequencies we eventually get is <span class="math display">\[
+\begin{align}
+Y_k &amp;= \left( \sum_l X_l\delta(f-l\Delta f) \right) * \mathrm{sinc}(\frac{f-f_s}{\Delta f}) \\
+&amp;= \sum_l X_l \mathrm{sinc}(\frac{f-f_s-(l\Delta f)}{\Delta f})\\
+&amp;= \sum_l X_l \mathrm{sinc}(k-l-\frac{f_s}{\Delta f})
+\end{align}
+\]</span></p>
+</section>
+<section id="todo-concatenating-ofdm-symbols-and-windowing" class="level4">
+<h4 class="anchored" data-anchor-id="todo-concatenating-ofdm-symbols-and-windowing">TODO: Concatenating OFDM symbols, and windowing</h4>
+<p>In communication systems, it is common to divide the infinite line of time into so called “symbols”. For example, in 4G LTE, a symbol is about 70us. Due to the nature of the Fourier series, each of these symbols can be represented by countably many “subcarriers” regularly spaced in a frequency lattice. When these symbols are concatenated together, they are often discontinuous at the boundaries, which results in out-of-band emissions. The reason is intuitively clear. In the time domain, doing such a thing is essentially taking your periodic signal, which represents one symbol, and multiplying it by the window function. In the frequency domain, this is convoluting by a sinc function. The smaller your symbol is, the more broad the sinc function, and the more out-of-band emissions you’ll produce. However, if you smooth the window out at its boundaries, the function you convolute by in the frequency domain is more localized.</p>
+</section>
+</section>
+<section id="todo-power" class="level2">
+<h2 class="anchored" data-anchor-id="todo-power">TODO: Power</h2>
+<p>The energy of a signal in some interval <span class="math inline">\([a,b]\)</span> is defined as <span class="math inline">\(\int_{a}^{b} x^* (t) x(t) dt\)</span>. The total energy, <span class="math inline">\(\int_{t=-\infty}^{\infty} x^* (t) x(t) = \braket{x|x} = |x|^2\)</span>, is a property of the signal itself, and therefore stays the same if we change basis into frequency domain. Hence, <span class="math inline">\(\int_{t=-\infty}^{\infty} x^* (t) x(t) = \int_{f=-\infty}^{\infty} X^* (f) X(f)\)</span>. This is called Parseval’s theorem.</p>
+<p>Unfortunately, energy doesn’t play so well with sampled signals, because squaring a dirac delta yields something which integrates to infinity. One trick we can play, though, is if we have a signal <span class="math inline">\(x(t)\)</span>, and we sample it to get <span class="math inline">\(x(t)d_c(t/\Delta t)\)</span>, then an approximation of the original energy is <span class="math inline">\(\braket{x|x} \approx \braket{x(t)d_c(t/\Delta t) | x(t)}\)</span>.</p>
+<p>The instantaneous power at time <span class="math inline">\(t\)</span> is defined as the rate of energy delivered, that is, <span class="math inline">\(x^* (t) x(t)\)</span>. With this definition, any pure tone <span class="math inline">\(e^{2\pi ift}\)</span> has power 1.</p>
+<p>Suppose we wanted to plot some sort of power spectrum on a spectrum analyzer. Our instrument is finite, so let’s say it captures the signal in the interval <span class="math inline">\([0,T]\)</span>, and then extends the signal to infinity by periodizing. Then it gets a frequency domain plot with spacing <span class="math inline">\(\Delta f = 1/T\)</span>. The total power is simply <span class="math inline">\(\sum_n |X(n)|^2\)</span>. If we doubled the interval, the frequency spectrum wouldn’t change: <span class="math inline">\(\Delta f\)</span> would decrease by two, but we would now have <span class="math inline">\(X(nf_0)=0\)</span> for all odd <span class="math inline">\(n\)</span>. Hence it makes sense to speak of the units as dBm/Hz.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://qingquanxia.github.io/qq-xia-notes/about.html</loc>
-    <lastmod>2025-11-12T01:54:10.911Z</lastmod>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/physics/discrete-time.html</loc>
+    <lastmod>2025-11-12T05:33:40.913Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/physics/continuous-fourier.html</loc>
+    <lastmod>2025-11-12T05:33:29.403Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/math/fundamental-theorem-alg.html</loc>
+    <lastmod>2025-11-12T05:21:30.957Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/macros.html</loc>
+    <lastmod>2025-11-12T02:53:12.494Z</lastmod>
   </url>
   <url>
     <loc>https://qingquanxia.github.io/qq-xia-notes/index.html</loc>
     <lastmod>2025-11-12T01:54:10.911Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/about.html</loc>
+    <lastmod>2025-11-12T02:07:20.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/physics/dirac-comb.html</loc>
+    <lastmod>2025-11-12T05:33:52.041Z</lastmod>
+  </url>
+  <url>
+    <loc>https://qingquanxia.github.io/qq-xia-notes/physics/spectral-theorem.html</loc>
+    <lastmod>2025-11-12T05:38:37.149Z</lastmod>
   </url>
 </urlset>

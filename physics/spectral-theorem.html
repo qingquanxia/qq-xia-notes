@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-06-01">
+
+<title>The Spectral Theorem – QQ Xia</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">QQ Xia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/spectral-theorem.html">The Spectral Theorem</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Physics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/continuous-fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Part 1, The continuous world: Fourier series to Fourier transforms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/discrete-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Part 2, Discrete Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/dirac-comb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Part 3, Unifying the continuous and discrete worlds: the dirac comb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../physics/spectral-theorem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">The Spectral Theorem</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/fundamental-theorem-alg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Proofs of the Fundamental Theorem of Algebra</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#theory" id="toc-theory" class="nav-link active" data-scroll-target="#theory">Theory</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#proof-for-complex-vector-spaces" id="toc-proof-for-complex-vector-spaces" class="nav-link" data-scroll-target="#proof-for-complex-vector-spaces">Proof for complex vector spaces</a></li>
+  </ul></li>
+  <li><a href="#finite-dimensional-applications" id="toc-finite-dimensional-applications" class="nav-link" data-scroll-target="#finite-dimensional-applications">Finite dimensional applications</a>
+  <ul class="collapse">
+  <li><a href="#rotational-inertia-tensor" id="toc-rotational-inertia-tensor" class="nav-link" data-scroll-target="#rotational-inertia-tensor">Rotational inertia tensor</a></li>
+  <li><a href="#normal-modes" id="toc-normal-modes" class="nav-link" data-scroll-target="#normal-modes">Normal modes</a></li>
+  <li><a href="#singular-value-decomposition-svd" id="toc-singular-value-decomposition-svd" class="nav-link" data-scroll-target="#singular-value-decomposition-svd">Singular value decomposition (SVD)</a></li>
+  <li><a href="#principle-component-analysis-pca" id="toc-principle-component-analysis-pca" class="nav-link" data-scroll-target="#principle-component-analysis-pca">Principle component analysis (PCA)</a></li>
+  </ul></li>
+  <li><a href="#infinite-dimensional-applications" id="toc-infinite-dimensional-applications" class="nav-link" data-scroll-target="#infinite-dimensional-applications">Infinite dimensional applications</a>
+  <ul class="collapse">
+  <li><a href="#fourier-transform" id="toc-fourier-transform" class="nav-link" data-scroll-target="#fourier-transform">Fourier transform</a></li>
+  <li><a href="#vibrating-membranes" id="toc-vibrating-membranes" class="nav-link" data-scroll-target="#vibrating-membranes">Vibrating Membranes</a></li>
+  <li><a href="#spherical-harmonics" id="toc-spherical-harmonics" class="nav-link" data-scroll-target="#spherical-harmonics">Spherical Harmonics</a></li>
+  <li><a href="#maxwells-equations" id="toc-maxwells-equations" class="nav-link" data-scroll-target="#maxwells-equations">Maxwell’s Equations</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../physics/continuous-fourier.html">Physics</a></li><li class="breadcrumb-item"><a href="../physics/spectral-theorem.html">The Spectral Theorem</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">The Spectral Theorem</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="hidden">
+
+</div>
+<!--# https://commons.wikimedia.org/wiki/File:Emission_spectrum-H.png -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/spectral-img10-hydrogen-spectrum.png" class="img-fluid figure-img"></p>
+<figcaption>Spectral lines of atomic hydrogen (Balmer series). The frequencies of these lines correspond to the spacing between the eigenvalues of the Hamiltonian, which is the Hermitian operator describing the energy of the electron.</figcaption>
+</figure>
+</div>
+<hr>
+<p><strong>The spectral theorem:</strong> Every Hermitian operator on a complex vector space has an orthonormal eigenbasis whose eigenvalues are real.</p>
+<p>(i.e., any Hermitian operator <span class="math inline">\(H\)</span> can be written <span class="math inline">\(H = UDU^\dagger\)</span> where <span class="math inline">\(U\)</span> is unitary and <span class="math inline">\(D\)</span> is diagonal with real entries.)</p>
+<hr>
+<section id="theory" class="level2">
+<h2 class="anchored" data-anchor-id="theory">Theory</h2>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background</h3>
+<p>In linear algebra, an <em>operator</em> on a (real or complex) vector space <span class="math inline">\(V\)</span> is a linear transformation <span class="math inline">\(T: V{\rightarrow}V\)</span> mapping <span class="math inline">\(V\)</span> into itself. For <span class="math inline">\(T\)</span> to be called a <em>linear transformation</em> as opposed to just a function, it must obey the two rules of linearity: for any vectors <span class="math inline">\(v_1, v_2 \in V\)</span>, and any scalar <span class="math inline">\(c\)</span>,</p>
+<ol type="1">
+<li><span class="math inline">\(T(v_1+v_2) = T(v_1) + T(v_2)\)</span></li>
+<li><span class="math inline">\(T(cv_1) = cT(v_1)\)</span></li>
+</ol>
+<p>The <em>adjoint</em> of an operator <span class="math inline">\(T\)</span> is its conjugate-transpose.</p>
+<p>For example, if <span class="math display">\[T =
+\begin{pmatrix}
+1 &amp; 2i &amp; 3 \\
+2i &amp; i &amp; 5-4i \\
+-1+2i &amp; 0 &amp; 4-3i
+\end{pmatrix}
+\]</span> its adjoint is <span class="math display">\[
+T^\dagger =
+\begin{pmatrix}
+1 &amp; -2i &amp; -1-2i \\
+-2i &amp; -i &amp; 0 \\
+3 &amp; 5+4i &amp; 4+3i
+\end{pmatrix}
+\]</span></p>
+<p>An operator <span class="math inline">\(H: V{\rightarrow}V\)</span> is called <em>Hermitian</em> if it is equal to its adjoint (also known as its conjugate-transpose), written <span class="math inline">\(H = H^\dagger\)</span>.</p>
+<p>The example matrix <span class="math inline">\(T\)</span> from earlier is not Hermitian.</p>
+<p>However, the following matrix <span class="math inline">\(H\)</span> is Hermitian: <span class="math display">\[H =
+\begin{pmatrix}
+1 &amp; -2i &amp; -1-2i \\
+2i &amp; 0 &amp; 0 \\
+-1+2i &amp; 0 &amp; -3
+\end{pmatrix}
+\]</span></p>
+<p>Notice in particular that if a matrix is Hermitian, its diagonal can only consist of real entries.</p>
+<p>For real vector spaces, the Hermitian operators are just the symmetric operators, that is, operators which are equal to their transpose, because the conjugate of a real number is itself.</p>
+</section>
+<section id="notation" class="level3">
+<h3 class="anchored" data-anchor-id="notation">Notation</h3>
+<p>When I write <span class="math inline">\(\braket{u,v}\)</span>, this means “the inner product of <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>”, and it can also be written as <span class="math inline">\(u^\dagger v\)</span>. I am borrowing this from <a href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket notation</a>, which is just a shorthand notation used a lot in quantum mechanics. To be honest I think outside of quantum mechanics, Dirac notation isn’t necessarily better in any aspects, it’s just more of a convenience.</p>
+<p>Also many times in this article I focus on the vector space <span class="math inline">\({\bf C}^n\)</span>, so you might be wondering whether all the results in here apply for general vector spaces as well. Actually it turns out that by specifying a basis, <a href="https://en.wikipedia.org/wiki/Vector_space#Bases,_vector_coordinates,_and_subspaces">every finite dimensional vector space is isomorphic</a> to <span class="math inline">\({\bf C}^n\)</span>, where <span class="math inline">\(n\)</span> is the dimension of the vector space. When two spaces are isomorphic it just means we can start with the vectors of one space, relabel them in some specific way to vectors of the other space, and no one can tell the difference. So actually, anything we prove about <span class="math inline">\({\bf C}^n\)</span> applies to all finite-dimensional vector spaces. In <span class="math inline">\({\bf C}^n\)</span>, linear transformations are represented as matrices, so I’ll often abuse notation and say that a linear operator <span class="math inline">\(T\in L(V)\)</span> is the same as its corresponding matrix in <span class="math inline">\({\bf C}^n\)</span>.</p>
+</section>
+<section id="proof-for-complex-vector-spaces" class="level3">
+<h3 class="anchored" data-anchor-id="proof-for-complex-vector-spaces">Proof for complex vector spaces</h3>
+<p><strong>Lemma:</strong> Every linear operator on a complex vector space must have at least one eigenvalue.</p>
+<p><strong>Proof of lemma:</strong></p>
+<p>Let <span class="math inline">\(V\)</span> be an <span class="math inline">\(n\)</span> dimensional complex vector space, and <span class="math inline">\(T\)</span> be a linear operator. The space of linear operators of <span class="math inline">\(V\)</span>, written <span class="math inline">\(L(V,V)\)</span> is isomorphic to the space of <span class="math inline">\(n\times n\)</span> matrices. In particular, <span class="math inline">\(L(V,V)\)</span> has dimension <span class="math inline">\(n^2\)</span>. This means that the set</p>
+<p><span class="math display">\[I, T, T^2, T^3,\cdots, T^{n^2}\]</span></p>
+<p>is linearly dependent because it has <span class="math inline">\((n^2+1)\)</span> elements, which means there is a set of coefficients, not all zero, such that</p>
+<p><span class="math display">\[c_0 + c_1 T + c_2 T^2 + \cdots + c_{m} T^m = 0\]</span></p>
+<p>where <span class="math inline">\(c_m\neq 0\)</span> and <span class="math inline">\(m\leq n^2\)</span>.</p>
+<p>By the fundamental theorem of algebra, this polynomial must have <span class="math inline">\(m\)</span> complex roots <span class="math inline">\(x_1,\cdots, x_m\)</span>, so that we can factor this into the form</p>
+<p><span class="math display">\[(T - x_1)(T - x_2)\cdots (T-x_m) = 0\]</span></p>
+<p>At least one of these factors must have a non-trivial null-space (otherwise, they would all be invertible, and their product would be invertible and hence non-zero). Let’s say <span class="math inline">\((T-x_i)\)</span> has a non-trivial null-space. Then <span class="math inline">\(x_i\)</span> is the eigenvalue of <span class="math inline">\(T\)</span> we are looking for.</p>
+<p><strong>Proof of rest of theorem:</strong></p>
+<p>Let <span class="math inline">\(V\)</span> be an <span class="math inline">\(n\)</span>-dimensional complex inner product space, and <span class="math inline">\(H\)</span> be a Hermitian operator. It must have some eigenvalue, let’s call it <span class="math inline">\(\lambda\)</span>. Consider the subspace <span class="math inline">\(S_\lambda\)</span> consisting of all vectors which have <span class="math inline">\(\lambda\)</span> as their eigenvalue. Because of its definition, <span class="math inline">\(S_\lambda\)</span> is invariant under <span class="math inline">\(H\)</span>, since for any <span class="math inline">\(v\in S_\lambda\)</span>, <span class="math inline">\(Hv = \lambda v \in S_\lambda\)</span> also has eigenvalue <span class="math inline">\(\lambda\)</span>, so <span class="math inline">\(H S_\lambda \subset S_\lambda\)</span>.</p>
+<p>Now consider the orthogonal complement <span class="math inline">\(S_\lambda^\perp\)</span>, which consists of the vectors in <span class="math inline">\(V\)</span> which are orthogonal to every vector in <span class="math inline">\(S_\lambda\)</span>. These two subspaces together make up the vector space, so that we can write <span class="math inline">\(V = S_\lambda \oplus S_\lambda^\perp\)</span>. This symbolic expression means that any vector in <span class="math inline">\(V\)</span> can be decomposed uniquely into the sum of a vector from <span class="math inline">\(S_\lambda\)</span> and a vector from <span class="math inline">\(S_\lambda^\perp\)</span>.</p>
+<p>Here is the crucial part of the proof which uses the fact that <span class="math inline">\(H\)</span> is Hermitian. If <span class="math inline">\(u\in S_\lambda^\perp\)</span>, that means <span class="math inline">\(u\)</span> is orthogonal to every vector <span class="math inline">\(v\in S_\lambda\)</span>, so that</p>
+<p><span class="math display">\[\braket{v|Hu} = \braket{Hv|u} = \lambda^*\braket{u|v} = 0\]</span></p>
+<p>so <span class="math inline">\(Hu\in S_\lambda^\perp\)</span>. This means that <span class="math inline">\(H S_\lambda^\perp \subset S_\lambda^\perp\)</span>, so that <span class="math inline">\(S_\lambda^\perp\)</span> is invariant.</p>
+<p>Hence we can separate our operator on its restriction to the two subspaces: <span class="math inline">\(H = (H| _ {S _ \lambda}) \oplus (H| _ {S _ \lambda ^ \perp})\)</span></p>
+<p>The resulting matrix representation of <span class="math inline">\(H\)</span> now looks something like this:</p>
+<p><img src="../assets/spectral-eqn10-directsum1.png" class="img-fluid"></p>
+<p>(The exact shape of the matrix will depend on the dimension of eigenspace <span class="math inline">\(S_\lambda\)</span>; this dimension is called the multiplicity of <span class="math inline">\(\lambda\)</span>).</p>
+<p>We can now repeat this process for the smaller matrix <span class="math inline">\(H| _ {S _ \lambda^\perp}\)</span> (i.e.&nbsp;<span class="math inline">\(H\)</span> restricted to the subspace <span class="math inline">\(S_\lambda^\perp\)</span>). When we can repeat no longer, we end up with a decomposition of <span class="math inline">\(H\)</span> into its restriction on its eigenspaces:</p>
+<p><img src="../assets/spectral-eqn20-directsum2.png" class="img-fluid"></p>
+<p>If we look only at what <span class="math inline">\(H\)</span> does on each individual eigenspace <span class="math inline">\(S _ {\lambda _ i}\)</span>, <span class="math inline">\(H\)</span> just scales each vector in the eigenspace by its eigenvalue <span class="math inline">\(\lambda\)</span>, that is, <span class="math inline">\(H| _ { S _ {\lambda _ i} } = \lambda_i I\)</span>. So if we just choose any orthonormal basis for each subspace (for example, using the <a href="https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process">Gramd-Schmidt procedure</a>), we can re-express <span class="math inline">\(H\)</span> in this basis as the matrix</p>
+<p><img src="../assets/spectral-eqn30-eigenvalues.png" class="img-fluid"></p>
+<p>In this basis we have constructed made out of the eigenvectors, <span class="math inline">\(H\)</span> is simply a diagonal matrix with its eigenvalues along the diagonal.</p>
+<p>Even though we’ve changed basis, the fact that <span class="math inline">\(H\)</span> is Hermitian has not changed (the fancy way to say this is that Hermitianess is a property which is invariant under an orthogonal change of basis). So the diagonal matrix pictured above is Hermitian. This means the entries along the diagonal must be equal to their conjugate, and hence real. This means that the eigenvalues of <span class="math inline">\(H\)</span> are real, so we are finished with the proof.</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Modifications for real vector spaces
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For real vector spaces, Hermitian operators are simply symmetric operators, that is, operators who are equal to their transpose: <span class="math inline">\(H = H^T\)</span>.</p>
+<p>Unlike in the complex case, not every operator on a real vector space has eigenvalues. For example, consider the following matrix, which rotates vectors by 90 degrees counter-clockwise.</p>
+<p><span class="math display">\[
+R = \begin{pmatrix}
+0 &amp; -1 \\
+1 &amp; 0
+\end{pmatrix}
+\]</span></p>
+<p>Viewed as an operator on <span class="math inline">\({\bf R}^2\)</span>, <span class="math inline">\(R\)</span> rotates every vector in <span class="math inline">\({\bf R}^2\)</span>, so it leaves no vector pointing in the same direction, hence has no eigenvalues.</p>
+<p>Also if we take the real part of two complex vectors, they are not necessarily orthonormal. For example,</p>
+<p><span class="math display">\[
+A = \begin{pmatrix}
+1 &amp; 2-i \\
+1-2i &amp; i
+\end{pmatrix}
+\]</span></p>
+<p>is orthonormal in <span class="math inline">\({\bf C}^2\)</span>, but</p>
+<p><span class="math display">\[
+{\operatorname{Re}}(A) = \begin{pmatrix}
+1 &amp; 2 \\
+1 &amp; 0
+\end{pmatrix}
+\]</span></p>
+<p>is not orthonormal in <span class="math inline">\({\bf R}^2\)</span></p>
+<p>For the special case of symmetric matrices, however, we can piggy-back on our lemma for the complex case. If <span class="math inline">\(H\)</span> is a symmetric operator in <span class="math inline">\(L({\bf R}^n)\)</span>, then if we view it as an operator <span class="math inline">\(L({\bf C}^n)\)</span>, it is Hermitian, so we can find a real eigenvalue <span class="math inline">\(\lambda\)</span> and complex eigenvector <span class="math inline">\(v = v_R + i v_I\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+Hv &amp;= \lambda v \\
+{\operatorname{Re}}(Hv) &amp;= {\operatorname{Re}}(\lambda v) \\
+H {\operatorname{Re}}(v) &amp;= \lambda {\operatorname{Re}}(v)
+\end{align*}
+\]</span></p>
+<p>Note how this manipulation relies on the fact that both <span class="math inline">\(H\)</span> and <span class="math inline">\(\lambda\)</span> are real.</p>
+<p>After we establish the existence of a single eigenvalue for symmetric operators on real vector spaces, the rest of the proof is identical to the complex case.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="finite-dimensional-applications" class="level2">
+<h2 class="anchored" data-anchor-id="finite-dimensional-applications">Finite dimensional applications</h2>
+<section id="rotational-inertia-tensor" class="level3">
+<h3 class="anchored" data-anchor-id="rotational-inertia-tensor">Rotational inertia tensor</h3>
+<p>A rigid body is a system of masses where the distances of each mass to one another are fixed. For such a rigid body which is fixed with respect to the origin, we can identify an axis of rotation <span class="math inline">\(\bf{\omega}\)</span> called the angular velocity such that the velocity of any particle <span class="math inline">\(\bf{v_i}\)</span> is given by <span class="math inline">\(\bf{v_i} = \bf{\omega} \times \bf{r_i}\)</span>.</p>
+<p>The angular momentum of a single particle is defined as <span class="math inline">\(\bf{L} = \bf{r}\times \bf{p}\)</span> where <span class="math inline">\(\bf{r}\)</span> is the position vector of the particle and <span class="math inline">\(p\)</span> is its momentum.</p>
+<p>The total angular momentum of the body is given by</p>
+<p><span class="math display">\[
+\begin{align*}
+\bf{L} &amp;= \sum_i m_i \bf{r_i}\times \bf{v_i} \\
+&amp;= \sum_i m_i \bf{r_i}\times (\bf{\omega} \times \bf{r_i})
+\end{align*}
+\]</span></p>
+<p>From the equation we can see that <span class="math inline">\(\bf{L}\)</span> depends linearly on <span class="math inline">\(\omega\)</span>. If we expand out the individual components, we get the following linear relation:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+L_x \\
+L_y \\
+L_z
+\end{pmatrix} =
+\begin{pmatrix}
+\sum_i m_i (y_i^2 + z_i^2) &amp; -\sum_i m_i x_i y_i &amp; -\sum_i m_i x_i z_i \\
+-\sum_i m_i x_i y_i &amp; \sum_i m_i (z_i^2 + x_i^2) &amp; -\sum_i m_i y_i z_i \\
+-\sum_i m_i x_i z_i &amp; -\sum_i m_i y_i z_i &amp; \sum_i m_i (x_i^2 + y_i^2)
+\end{pmatrix}
+\begin{pmatrix}
+\omega_x \\
+\omega_y \\
+\omega_z
+\end{pmatrix}
+\]</span></p>
+<p>Hence we can write <span class="math inline">\(\bf{L} = I \bf{\omega}\)</span>, where <span class="math inline">\(I\)</span> is called the <em>tensor of inertia</em> (in this context, tensor really means second-order tensor, which is just a linear transformation, and can be represented as a matrix). Note that <span class="math inline">\(I\)</span> is a symmetric tensor. By the spectral theorem, we can find an orthonormal basis <span class="math inline">\(\hat{\bf{x}}', \hat{\bf{y}}', \hat{\bf{z}}'\)</span> such that the relation looks like this:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+L_x' \\
+L_y'\\
+L_z'
+\end{pmatrix} =
+\begin{pmatrix}
+\lambda_1 &amp; 0 &amp; 0 \\
+0 &amp; \lambda_2 &amp; 0 \\
+0 &amp; 0 &amp; \lambda_3
+\end{pmatrix}
+\begin{pmatrix}
+\omega_x' \\
+\omega_y' \\
+\omega_z'
+\end{pmatrix}
+\]</span></p>
+</section>
+<section id="normal-modes" class="level3">
+<h3 class="anchored" data-anchor-id="normal-modes">Normal modes</h3>
+<p><img src="../assets/spectral-img90-coupled-pendulum-diagram.png" class="img-fluid"></p>
+<p><a href="https://ucscphysicsdemo.sites.ucsc.edu/physics-5a6a/coupled-pendulum/">original image</a></p>
+<p><a href="https://youtu.be/YyOUJUOUvso?si=iESu6cfAQyyirK_M">coupled pendulum demo</a></p>
+<p>The x-component of the gravitational force acting on the first mass is <span class="math inline">\(-m_1 g x_1/L\)</span>. The spring exerts a force of <span class="math inline">\(k(x_2-x_1)\)</span>. Similar equations hold for the second mass. Hence we can use <span class="math inline">\(F_x = m a_x\)</span> for the two masses to write two equations describing the dynamics:</p>
+<p><span class="math display">\[
+\begin{align*}
+(-m_1 g x_1/L) + k(x_2-x_1) &amp;= m_1 \tfrac{d^2}{dt^2} x_1 \\
+(-m_2 g x_2/L) - k(x_2-x_1) &amp;= m_2 \tfrac{d^2}{dt^2} x_2
+\end{align*}
+\]</span></p>
+<p>We can write this in matrix form:</p>
+<p><span class="math display">\[
+\tfrac{d^2}{dt^2}
+\begin{pmatrix}
+x_1 \\
+x_2
+\end{pmatrix} =
+\begin{pmatrix}
+-g/L - k/m_1 &amp; k/m_1 \\
+k/m_2 &amp; -g/L - k/m_2
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\
+x_2
+\end{pmatrix}
+\]</span></p>
+</section>
+<section id="singular-value-decomposition-svd" class="level3">
+<h3 class="anchored" data-anchor-id="singular-value-decomposition-svd">Singular value decomposition (SVD)</h3>
+<p><img src="../assets/spectral-img50-svd.svg" class="img-fluid"></p>
+<p>https://en.wikipedia.org/wiki/File:Singular-Value-Decomposition.svg</p>
+</section>
+<section id="principle-component-analysis-pca" class="level3">
+<h3 class="anchored" data-anchor-id="principle-component-analysis-pca">Principle component analysis (PCA)</h3>
+<p><img src="../assets/spectral-img60-pca.svg" class="img-fluid"> https://en.wikipedia.org/wiki/File:GaussianScatterPCA.svg</p>
+<p>Suppose we have a random vector <span class="math inline">\(X\)</span>, and we make a bunch of observations <span class="math inline">\(x_1, \cdots, x_P\)</span>. We can organize this into a matrix</p>
+<p><span class="math display">\[
+M = \begin{pmatrix}
+\vdots &amp; &amp; \vdots \\
+x_1 &amp; \dots &amp; x_P \\
+\vdots &amp; &amp; \vdots
+\end{pmatrix}
+\]</span></p>
+<p>The sample covariance matrix is defined <span class="math inline">\(K_{XX} = \frac{1}{P-1} MM^T\)</span>. This is symmetric! By the spectral theorem, we can find an orthornormal basis in which <span class="math inline">\(X\)</span> looks uncorrelated, i.e., find an orthonormal matrix <span class="math inline">\(U\)</span> such that <span class="math inline">\(Y = U^{-1} X\)</span> is uncorrelated: <span class="math inline">\(K_{YY}\)</span> is diagonal.</p>
+</section>
+</section>
+<section id="infinite-dimensional-applications" class="level2">
+<h2 class="anchored" data-anchor-id="infinite-dimensional-applications">Infinite dimensional applications</h2>
+<section id="fourier-transform" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-transform">Fourier transform</h3>
+<p>It turns out the operator <span class="math inline">\(\tfrac{1}{2\pi i}\frac{d}{dt}\)</span> is Hermitian in <span class="math inline">\(L^2({\bf R})\)</span>. We can verify this by expanding out the integrals and using integration by parts.</p>
+<p><span class="math display">\[
+\begin{align*}
+\braket{x(t)|\tfrac{1}{2\pi i}\tfrac{d}{dt}|y(t)} &amp;= \int _ {-\infty}^\infty x ^ *(t) \tfrac{1}{2\pi i}\tfrac{d}{dt} y(t) dt \\
+&amp;= [\tfrac{1}{2\pi i} x ^ *(t) y(t)] _ {-\infty}^\infty - \int_{-\infty}^\infty y(t) \tfrac{1}{2\pi i}\tfrac{d}{dt}x ^ *(t) dt \\
+&amp;= \braket{y(t)|\tfrac{1}{2\pi i}\tfrac{d}{dt}|x(t)} ^ *
+\end{align*}
+\]</span></p>
+<p>(The second step used the fact that <span class="math inline">\(x,y\)</span> were square-integrable functions, so they have to vanish at infinity, so <span class="math inline">\([\tfrac{1}{2\pi i} x(t)^* y(t)]_{-\infty}^\infty = 0\)</span>)</p>
+<p>Because it is Hermitian, the spectral theorem says there is a complete set of orthonormal eigenvectors. These eigenvectors are found by solving the equation</p>
+<p><span class="math display">\[
+(\tfrac{1}{2\pi i}\tfrac{d}{dt}) x(t) = \lambda x(t)
+\]</span></p>
+<p>which has only one solution: <span class="math display">\[
+x(t) = e^{2\pi i\lambda t}
+\]</span></p>
+<p>Hence the eigenvectors are complex sinusoids, and the corresponding eigenvalue is the frequency of the complex sinusoid.</p>
+</section>
+<section id="vibrating-membranes" class="level3">
+<h3 class="anchored" data-anchor-id="vibrating-membranes">Vibrating Membranes</h3>
+<blockquote class="blockquote">
+<p>Can one hear the shape of a drum?</p>
+<p>— Mark Kac, 1966, American Mathematical Monthly</p>
+</blockquote>
+<p>Suppose we have a simple region <span class="math inline">\(\Omega\)</span> in the plane, and we stretch a membrane on it. The wave equation for vibrating membranes is</p>
+<p><span class="math display">\[
+(\partial_x^2 + \partial_y^2) u = \frac{1}{c^2}\partial_t^2 u
+\]</span></p>
+<p>where <span class="math inline">\(u(t, x,y)\)</span> is height and <span class="math inline">\(c\)</span> is the speed of waves on the membrane. We require <span class="math inline">\(u=0\)</span> on the boundary of the drum. The Hilbert space under study is the set of square-integrable functions <span class="math inline">\(u: {\bf R}\times \Omega {\rightarrow}{\bf R}\)</span> which are 0 on the boundary of <span class="math inline">\(\Omega\)</span> at all times. We solve this by finding the eigenvalues of <span class="math inline">\((\partial_x^2 + \partial_y^2)\)</span>.</p>
+<p><img src="../assets/spectral-img20-drum-eigenmodes.png" class="img-fluid"></p>
+</section>
+<section id="spherical-harmonics" class="level3">
+<h3 class="anchored" data-anchor-id="spherical-harmonics">Spherical Harmonics</h3>
+<p>The Laplacian in spherical coordinates is:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+dx \\
+dy \\
+dz
+\end{pmatrix} =
+\begin{pmatrix}
+\sin\theta \cos\varphi &amp; r \cos\theta \cos\varphi &amp; -r \sin\theta \sin\varphi \\
+\sin\theta \sin\varphi &amp; r \cos\theta \sin\varphi &amp; r \sin\theta \cos\varphi \\
+\cos\theta &amp; -r \sin\theta &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+dr \\
+d\theta \\
+d\varphi
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
+dx \\
+dy \\
+dz
+\end{pmatrix} =
+\begin{pmatrix}
+\sin\theta \cos\varphi &amp; \cos\theta \cos\varphi &amp; -\sin\varphi \\
+\sin\theta \sin\varphi &amp; \cos\theta \sin\varphi &amp; \cos\varphi \\
+\cos\theta &amp; -\sin\theta &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+dr \\
+rd\theta \\
+r\sin\theta d\varphi
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
+dr \\
+rd\theta \\
+r\sin\theta d\varphi
+\end{pmatrix} =
+\begin{pmatrix}
+\sin\theta \cos\varphi &amp; \sin\theta \sin\varphi &amp; \cos\theta \\
+\cos\theta \cos\varphi &amp; \cos\theta \sin\varphi &amp; -\sin\theta \\
+-\sin\varphi &amp; \cos\varphi &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+dx \\
+dy \\
+dz
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
+dr \\
+d\theta \\
+d\varphi
+\end{pmatrix} =
+\begin{pmatrix}
+\sin\theta \cos\varphi &amp; \sin\theta \sin\varphi &amp; \cos\theta \\
+\tfrac{1}{r}\cos\theta \cos\varphi &amp; \tfrac{1}{r}\cos\theta \sin\varphi &amp; -\tfrac{1}{r}\sin\theta \\
+-\tfrac{1}{r\sin\theta}\sin\varphi &amp; \tfrac{1}{r\sin\theta}\cos\varphi &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+dx \\
+dy \\
+dz
+\end{pmatrix}
+\]</span></p>
+<p>Suppose</p>
+<p><span class="math display">\[
+\nabla^2 f = \frac{1}{r^2}{\frac{\partial }{\partial r}}\left ( r^2{\frac{\partial f}{\partial r}} \right ) + \frac{1}{r^2\sin\theta}{\frac{\partial }{\partial \theta}} \left ( \sin\theta{\frac{\partial f}{\partial \theta}} \right ) + \frac{1}{r^2\sin^2\theta}{\frac{\partial^2 f}{\partial^2 \varphi}}
+\]</span></p>
+<p>Now suppose <span class="math inline">\(f(r, \theta, \varphi) = R(r)Y(\theta, \phi)\)</span>. Plugging it in, we get</p>
+<p><span class="math display">\[
+f \mapsto \frac{1}{\sin\theta}{\frac{\partial }{\partial \theta}} \left ( \sin\theta{\frac{\partial f}{\partial \theta}} \right ) + \frac{1}{\sin^2\theta}{\frac{\partial^2 f}{\partial^2 \varphi}}
+\]</span></p>
+<p>we can separate coordinates to get a tensor-product separation:</p>
+<p><img src="../assets/spectral-img30-rotating-spherical-harmonics.gif" class="img-fluid"></p>
+<p>image source: https://en.wikipedia.org/wiki/File:Rotating_spherical_harmonics.gif</p>
+<p><img src="../assets/spectral-img40-spherical-harmonics.svg" class="img-fluid"> image source: https://en.wikipedia.org/wiki/File:Sphericalfunctions.svg</p>
+</section>
+<section id="maxwells-equations" class="level3">
+<h3 class="anchored" data-anchor-id="maxwells-equations">Maxwell’s Equations</h3>
+<p><span class="math display">\[
+\begin{align*}
+\nabla \cdot E &amp;= \rho / \epsilon_0 \\
+\nabla \cdot B &amp;= 0 \\
+\nabla \times E &amp;= -{\frac{\partial B}{\partial t}} \\
+\nabla \times B &amp;= \mu_0 J + \epsilon_0 \mu_0 {\frac{\partial E}{\partial t}}
+\end{align*}
+\]</span></p>
+<p>Expanded out into components, this becomes</p>
+<p><span class="math display">\[
+\begin{align*}
+\partial_y E_z - \partial_z E_y &amp;= -\partial_t B_x \\
+\partial_z E_x - \partial_x E_z &amp;= -\partial_t B_y \\
+\partial_x E_y - \partial_y E_x &amp;= -\partial_t B_z \\
+\partial_y B_z - \partial_z B_y &amp;= \mu_0 J_x + \epsilon_0 \mu_0 \partial_t E_x \\
+\partial_z B_x - \partial_x B_z &amp;= \mu_0 J_y + \epsilon_0 \mu_0 \partial_t E_y \\
+\partial_x B_y - \partial_y B_x &amp;= \mu_0 J_z + \epsilon_0 \mu_0 \partial_t E_z
+\end{align*}
+\]</span></p>
+<p><span class="math display">\[
+\bigoplus_6 \bigotimes_{3+1} L^2({\bf R}) = \bigoplus_6 L^2({\bf R}^{3+1})
+\]</span></p>
+<p><span class="math display">\[
+\braket{u_1\oplus v_1 | u_2\oplus v_2} = \braket{u_1|u_2} + \braket{v_1|v_2}
+\]</span> <span class="math display">\[
+\braket{u_1\otimes v_1 | u_2\otimes v_2} = \braket{u_1|u_2} \braket{v_1|v_2}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
+0 &amp; -\partial_z &amp; +\partial_y &amp; +\frac{1}{c}\partial_t &amp; 0 &amp; 0 \\
++\partial_z &amp; 0 &amp; -\partial_x &amp; 0 &amp; +\frac{1}{c}\partial_t &amp; 0 \\
+-\partial_y &amp; +\partial_x &amp; 0 &amp; 0 &amp; 0 &amp; +\frac{1}{c}\partial_t \\
+-\frac{1}{c}\partial_t &amp; 0 &amp; 0 &amp; 0 &amp; -\partial_z &amp; +\partial_y \\
+0 &amp; -\frac{1}{c}\partial_t &amp; 0 &amp; +\partial_z &amp; 0 &amp; -\partial_x \\
+0 &amp; 0 &amp; -\frac{1}{c}\partial_t &amp; -\partial_y &amp; +\partial_x &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+E_x \\
+E_y \\
+E_z \\
+cB_x \\
+cB_y \\
+cB_z
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+0 \\
+0 \\
+c\mu_0 J_x \\
+c\mu_0 J_y \\
+c\mu_0 J_z
+\end{pmatrix}
+\]</span></p>
+<p>We already concluded that <span class="math inline">\(\tfrac{1}{2\pi i} \partial_x\)</span> is Hermitian, so we know that <span class="math inline">\((i\partial_x)\)</span> is also Hermitian since it’s just the first operator scaled by the real number <span class="math inline">\(-2\pi\)</span>. Hence we can work out the adjoint of the derivative operator:</p>
+<p><span class="math display">\[
+\begin{align*}
+(i\partial_x)^\dagger &amp;= i\partial_x \\
+i (i\partial_x)^\dagger &amp;= i^2\partial_x \\
+(-i i \partial_x)^\dagger &amp;= -\partial_x \\
+(\partial_x)^\dagger &amp;= -\partial_x
+\end{align*}
+\]</span></p>
+<p>Suppose we have two vector spaces <span class="math inline">\(U, V\)</span>. An arbitrary linear transformation <span class="math inline">\(A\)</span> on the vector space <span class="math inline">\(U\oplus V\)</span> can be written as</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+A_{uu} &amp; A_{uv} \\
+A_{vu} &amp; A_{vv}
+\end{pmatrix}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+(A_{uu} u + A_{uv} v) \oplus (A_{vu} u + A_{vv} v)
+\]</span></p>
+<p>Under what circumstances is <span class="math inline">\(A\)</span> Hermitian?</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+u_1^\dagger &amp; v_1^\dagger
+\end{pmatrix}
+\begin{pmatrix}
+A_{uu} &amp; A_{uv} \\
+A_{vu} &amp; A_{vv}
+\end{pmatrix}
+\begin{pmatrix}
+u_2 \\
+v_2
+\end{pmatrix} = \left [
+\begin{pmatrix}
+u_2^\dagger &amp; v_2^\dagger
+\end{pmatrix}
+\begin{pmatrix}
+A_{uu} &amp; A_{uv} \\
+A_{vu} &amp; A_{vv}
+\end{pmatrix}
+\begin{pmatrix}
+u_1 \\
+v_1
+\end{pmatrix} \right ]^*
+\]</span></p>
+<p>This requires <span class="math inline">\(A_{uu}, A_{vv}\)</span> to be Hermitian, and <span class="math inline">\(A_{uv} = A_{vu}^\dagger\)</span></p>
+</section>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<ol type="1">
+<li><p><em>Introduction to Quantum Mechanics</em>, David Griffiths. Even though it only discusses quantum mechanics, the math it develops can be applied to pretty much anything that uses waves, since all wave equations are essentially the same. The spectral theorem is so essential to quantum mechanics that it is discussed in depth there. This book is accessible to anyone with knowledge of basic calculus and linear algebra. It’s a legendary physics textbook, known for its clarity and its honest discussions of deep matters.</p></li>
+<li><p><em>Mathematics of Classical and Quantum Physics</em></p></li>
+<li><p><em>Real and Complex Analysis</em>, Walter Rudin. Very rigorous, do not read unless you have taken an intro to real analysis course. I have personally only glanced through it, my impression is that infinite dimensional Hilbert spaces are much more nuanced than finite dimensional ones.</p></li>
+<li><p><em>Linear Algebra Done Right</em>, Sheldon Axler. The proof of the spectral theorem in this article was taken from this book.</p></li>
+<li><p><em>Advanced Linear Algebra</em>, Roman. The first few chapters give a superb introduction to the abstract side of vector spaces.</p></li>
+<li><p><em>Linear Algebra and Its Applications 5th edition</em>, David Lay, Steven Lay, Judi McDonald. The singular value decomposition is explained very well in chapter 7.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/qingquanxia\.github\.io\/qq-xia-notes\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
