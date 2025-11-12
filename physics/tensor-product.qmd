@@ -1,0 +1,28 @@
+---
+title: "Tensor Product"
+# date: 
+toc: true
+number-sections: false
+draft: true
+---
+{{< include /macros.qmd >}}
+
+# What is the tensor product?
+
+That $L^2(\RR^2)$ is the tensor product of $L^2(x)$ and $L^2(y)$ is not immediately obvious, until you consider the dirac delta basis. It is evident that $\{ \delta(x-a) \}_a$ is a basis for L^2(x), and similarly for $L^2(y)$. It is also evident that any function on $\RR^2$ can be expressed as the sum of dirac-deltas on the plane, so $\{ \delta(x-a)\delta(y-b) \}_{a,b}$ is a basis.
+
+The space of functions from $\RR^n$ to $\RR^m$ can be decomposed as $\oplus{i=1}^m \otimes{j=1}^n L^2(\RR)$.
+
+Maxwell's equations are equations on the space of functions from $\RR^3$ to $\RR^3$.
+
+# Multiplying two bases
+
+
+Suppose we have some sort of partial differential equation. $d/dx$ is a Hermitian operator. We know the composition of two Hermitian operators $A,B$ is again Hermitian if they commmute: $\dagger{AB} = \dagger{B}\dagger{A} = BA$. Since partial derivatives always commute with each other, any partial derivative operator is Hermitian.
+
+
+
+
+Probability independence as tensor product
+
+Consider two probability spaces A, B. Their joint probability space is simply $A \otimes B$. Two random variables are independent if their joint probability function can be written as $f(x)g(y)$. Their conditional probability is $Pr(x | Y=y) = \delta(Y-y) f(x,y)$.
