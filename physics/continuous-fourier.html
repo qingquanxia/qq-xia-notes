@@ -41,13 +41,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6a1adf5308eb899d9c94ac9b7ff3aa0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -103,39 +103,10 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">QQ Xia</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -148,12 +119,15 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">QQ Xia</a> 
+    </div>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
@@ -207,8 +181,20 @@ window.Quarto = {
  <span class="menu-text">3 Proofs of the Fundamental Theorem of Algebra</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/maximum-ratio-combining.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maximal Ratio Combining</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -330,7 +316,7 @@ window.Quarto = {
 \]</span></p>
 <p>We end up with the general solutions <span class="math inline">\(f(x) = Ae^{ikx} + Be^{-ikx}\)</span> and <span class="math inline">\(g(t) = Ce^{i\omega t} + De^{-i\omega t}\)</span>. The boundaries conditions specify that both ends of the string are fixed at zero, hence <span class="math inline">\(A+B=0\)</span> and <span class="math inline">\(Ae^{ikL}+Be^{-ikL}=0\)</span>. Substituting the first equation into the second gives <span class="math inline">\(A(e^{ikL}-e^{-ikL})=0 \Rightarrow e^{ikL}=e^{-ikL}\Rightarrow e^{2ikL}=1\)</span>, which implies <span class="math inline">\(k=n\pi/L\)</span> for some integer <span class="math inline">\(n\)</span>. We get as our final solution: <span class="math display">\[y(x,t) = \sin(kx)e^{i\omega t} + \text{c.c.}\]</span> (The c.c. stands for complex-conjugate, and it is just there to make the solution real. Some people will set in place a convention that the final solution is complex, and it’s implicit that the physical solution is obtained by taking the real part. This is totally fine for linear systems, and is commonly used in discussing phasors in electrical circuits, however it gets a bit confusing when non-linearity comes into play, because <span class="math inline">\({\operatorname{Re}}(ab) \neq {\operatorname{Re}}(a){\operatorname{Re}}(b)\)</span>.)</p>
 <p>The solutions we have found are called the standing waves, because they oscillate in place. They are the first, second, etc harmonics, all multiples of the first (i.e.&nbsp;fundamental) harmonic. They seem like special cases, until we realize that, like the Fourier series, we can decompose <em>any</em> function into a sum of these standing waves.</p>
-<p>Normalizing the position equations gives us a family: <span class="math inline">\(f(x) = \sqrt{2} \sin(k_n x)\)</span> where <span class="math inline">\(k_n = n\pi /L\)</span>. From the <a href="[relref []{.quarto-shortcode__-param data-is-shortcode=&quot;1&quot; data-value=&quot;spectral-theorem.md&quot; data-raw=&quot;&quot;spectral-theorem.md&quot;&quot;} ]{.quarto-shortcode__ data-is-shortcode=&quot;1&quot; data-raw=&quot;{{< relref &quot;spectral-theorem.md&quot; >}}&quot;}">spectral theorem</a>, these equations form a complete orthonormal basis because they are the eigenfunctions of the Hermitian operator <span class="math inline">\({\frac{\partial^2 }{\partial^2 x}}\)</span> acting on the subspace of functions which are fixed to zero at <span class="math inline">\(x=0,L\)</span>.</p>
+<p>Normalizing the position equations gives us a family: <span class="math inline">\(f(x) = \sqrt{2} \sin(k_n x)\)</span> where <span class="math inline">\(k_n = n\pi /L\)</span>. From the <a href="../physics/spectral-theorem.html">spectral theorem</a>, these equations form a complete orthonormal basis because they are the eigenfunctions of the Hermitian operator <span class="math inline">\({\frac{\partial^2 }{\partial^2 x}}\)</span> acting on the subspace of functions which are fixed to zero at <span class="math inline">\(x=0,L\)</span>.</p>
 <p>Now for some numbers. I’m pretty clueless when it comes to music, so I’ll get by with the best info I have. Looking at https://tension.stringjoy.com/, an accoustic guitar with phosphor bronze strings typically has a 25.5 inch 0.012 string (whatever 0.012 means). That string will give a pitch of E4 (329.63 Hz) when a tension of 25.7 pounds is applied. Assuming that E4 is the fundamental frequency of the note when played, we have <span class="math inline">\(v=\frac{\omega_1}{k_1} = \frac{2\pi (329.63 \mathrm{Hz})}{\pi / (25.5 \mathrm{in})} = 427 \mathrm{m/s}\)</span>. Incidentally this implies that the linear mass density is <span class="math inline">\(\lambda = T/v^2 = 0.627 \mathrm{g/m}\)</span>.</p>
 <p>Now let’s say we pluck the string at <span class="math inline">\(x=0.3L\)</span>, so it looks like a triangle at <span class="math inline">\(t=0\)</span>. We can decompose our initial shape <span class="math inline">\(f(x)\)</span> into a sum of our harmonics. We can attach an appropriate <span class="math inline">\(e^{i\omega t}\)</span> to each of these harmonics to get our full solution <span class="math inline">\(y(x,t)\)</span>. Here are some plots:</p>
 <p><img src="../assets/fixed-bc-power-harmonics.svg" class="img-fluid"></p>
@@ -404,7 +390,7 @@ x(t) &amp;= \sum_{n=-\infty}^\infty  \braket{\frac{1}{\sqrt{b-a}}e^{2\pi i\frac{
 <p>3 [not relevant to us] Time evolution.</p>
 <p>For a particle that is free to travel along the entire 1-dimensional line, the Hilbert space we are interested in is <span class="math inline">\(L^2({\bf R}, {\bf C})\)</span>.</p>
 <p>There are two operators we are interested in. The position observable is given by the operator <span class="math inline">\(f(x) \mapsto xf(x)\)</span>, that is, multiplication by <span class="math inline">\(x\)</span>. It is easy to check that this is linear and Hermitian. Its eigenvalues consist of the entire real line. An eigenvalue <span class="math inline">\(c\)</span> has eigenvector <span class="math inline">\(\delta(x-c)\)</span>. Because its eigenvectors form an orthonormal basis for the Hilbert space, we can express any wave <span class="math inline">\(\psi(x)\)</span> in its basis. In this case it is trivial: <span class="math inline">\(\ket{\psi} = \int_x \psi(x) \ket{\delta(x-c)} dx\)</span>.</p>
-<p>The momentum observable, on the other hand, is the operator <span class="math inline">\(\frac{\hbar}{i} (d/dx)\)</span>. Again, this is both linear and Hermitian. See the <a href="[relref []{.quarto-shortcode__-param data-is-shortcode=&quot;1&quot; data-value=&quot;spectral-theorem.md&quot; data-raw=&quot;&quot;spectral-theorem.md&quot;&quot;} ]{.quarto-shortcode__ data-is-shortcode=&quot;1&quot; data-raw=&quot;{{< relref &quot;spectral-theorem.md&quot; >}}&quot;}">spectral theorem</a> page for an explanation of why it is Hermitian. An eigenvector <span class="math inline">\(\ket{p}\)</span> with eigenvalue <span class="math inline">\(p\)</span> must be a solution of the differential equation <span class="math inline">\(\frac{\hbar}{i} (d/dx)\phi(x) = p\phi(x)\)</span>. Its solution is <span class="math inline">\(\ket{p} = e^{ipx/\hbar}\)</span>. Hence the eigenvectors of the momentum observable consist of the set of exponential functions. Note that <span class="math inline">\(\hbar = \frac{h}{2\pi}\)</span> is the reduced plank constant, and <span class="math inline">\(h\approx 6.6\times 10^{-34} \mathrm{J}\cdot\mathrm{s}\)</span> is the regular plank constant. If we choose to use so called “natural units” such that <span class="math inline">\(h=1\)</span>, then the momentum <span class="math inline">\(p\)</span> corresponds exactly to the frequencies that we use in our official definition of the Fourier transform!</p>
+<p>The momentum observable, on the other hand, is the operator <span class="math inline">\(\frac{\hbar}{i} (d/dx)\)</span>. Again, this is both linear and Hermitian. See the <a href="../physics/spectral-theorem.html">spectral theorem</a> page for an explanation of why it is Hermitian. An eigenvector <span class="math inline">\(\ket{p}\)</span> with eigenvalue <span class="math inline">\(p\)</span> must be a solution of the differential equation <span class="math inline">\(\frac{\hbar}{i} (d/dx)\phi(x) = p\phi(x)\)</span>. Its solution is <span class="math inline">\(\ket{p} = e^{ipx/\hbar}\)</span>. Hence the eigenvectors of the momentum observable consist of the set of exponential functions. Note that <span class="math inline">\(\hbar = \frac{h}{2\pi}\)</span> is the reduced plank constant, and <span class="math inline">\(h\approx 6.6\times 10^{-34} \mathrm{J}\cdot\mathrm{s}\)</span> is the regular plank constant. If we choose to use so called “natural units” such that <span class="math inline">\(h=1\)</span>, then the momentum <span class="math inline">\(p\)</span> corresponds exactly to the frequencies that we use in our official definition of the Fourier transform!</p>
 <p>So we have two different sets of orthonormal bases for our Hilbert space. Getting from one to the other is a simple matter of changing bases. The operator <span class="math inline">\(\int_p \ket{p}\bra{p} dp\)</span> is called a “resolution of the identity”, because it is in fact the identity; it merely breaks our vector up as a linear combination of the basis and then sums all the components back together again, giving us original vector. If we expand it out, what it is really saying is that <span class="math display">\[
 \ket{\psi} = \left(\int_p \ket{p}\bra{p} dp\right)\ket{\psi} = \int_p e^{ipx/\hbar} \braket{p|\psi}dp = \int_p e^{ipx/\hbar} \left(\int_{x'} e^{-ipx'/\hbar}\psi dx'\right)dp
 \]</span></p>
